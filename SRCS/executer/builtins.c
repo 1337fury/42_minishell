@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 18:12:54 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 18:39:25 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ void	exec_builtins(t_command *cmd, bool pipe)
 	if (!pipe)
 		restore_fd(fd, cmd);
 }
-
