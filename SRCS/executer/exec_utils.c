@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/29 08:41:25 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:29:00 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,20 +126,28 @@ void	exec_family(t_family *family)
 	t_command	*curr_cmd;
 	int			inx_exit[2];
 	int			*child_pid;
+	int			sh_wait;
 
 	if (!family || !family->head || family->already_seen)
 		return ;
 	child_pid = ft_calloc(family->size, sizeof(int));
 	curr_cmd = family->head;
+	sh_wait = true;
 	if (check_pipe(curr_cmd))
 		exec_pipes_cmds(family, child_pid);
 	// else if (check_builtin(*curr_cmd->data))
+	// {
 	//     exec_builtins(curr_cmd);
+	// 	sh_wait = false;
+	// }
 	else
 		single_command(curr_cmd, child_pid);
-	inx_exit[0] = -1;
-	while (++inx_exit[0] < family->size)
-		waitpid(child_pid[inx_exit[0]], &inx_exit[1], 0);
-	g_gen.e_status = WEXITSTATUS(inx_exit[1]);
+	if (sh_wait)
+	{
+		inx_exit[0] = -1;
+		while (++inx_exit[0] < family->size)
+			waitpid(child_pid[inx_exit[0]], &inx_exit[1], 0);
+		g_gen.e_status = WEXITSTATUS(inx_exit[1]);
+	}
 	free(child_pid);
 }

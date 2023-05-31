@@ -6,13 +6,13 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/29 17:16:40 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:14:56 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// for the beautiful(l3aks) NORMINETTE
+// for the beautiful NORMINETTE
 void	_init(char **joined, t_command **cmd, int pos)
 {
 	(*joined) = "";

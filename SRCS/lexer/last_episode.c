@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 18:42:28 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:28:49 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,16 @@ bool	c_red(t_node *r)
 }
 bool	c_par(int type, t_node *r, t_node *l)
 {
-	(void)l;
     if (type == RIGHT_PAR)
-        if (!(r->type % 2))
+	{
+        if (!(r->type % 2) || l->type == LEFT_PAR)
             return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
+	}
     else
+	{
         if (!(r->type % 5))
             return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
+	}
 	return (true);
 }
 
@@ -110,7 +113,7 @@ bool	is_clean(t_list *list)
 	curr = list->head;
 
 	if (!is_closed(curr))
-		return (ms_errors("syntax error", "unclosed bar"), true);
+		return (ms_errors("syntax error", "unclosed bar"), false);
 	while (curr->type != E_CMD)
 	{
 		n = retrieve_node(curr->next, RIGHT);
