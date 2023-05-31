@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 19:22:37 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:34:05 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 # define LEFT -1
 # define RIGHT -2
 # define N_LINE 10
+
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define WHITE "\033[0;37m"
 
 /*
 	- `Global RULES`
