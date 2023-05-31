@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 22:18:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 12:46:58 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:32:01 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,10 @@ int	main(int ac, char **av, char **envp)
 		exit(1);
 	while (true)
 	{
-		line = readline("fry@shell ~ :");
+		line = readline(GREEN"fry@shell ~ :"WHITE);
 		lexer = fry_lexer(line);
 		expander = fry_expander(lexer);
 		executer(expander);
-	}
-	
-
-	t_node *curr;
-
-	if (lexer)
-	{
-		curr = lexer->head;
-		while (curr)
-		{
-			printf("type : %d\n", curr->type);
-			printf("data : %s\n", curr->value);
-			curr = curr->next;
-		}
 	}
 	return (0);
 }
