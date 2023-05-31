@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   last_episode.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 18:42:28 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:15:30 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ t_list	*create_list(void)
 	return (lst);
 }
 
-// Converts a single character to a new string and returns a pointer to that string.
+/* Converts a single character to a new string
+	and returns a pointer to that string.
+*/
 char	*fry_char_to_str(char c)
 {
 	char	*result;
@@ -42,10 +44,13 @@ char	*fry_char_to_str(char c)
 }
 
 /**
- * Checks whether parentheses in the given linked list of nodes are properly closed.
- * Counts the number of left and right parentheses encountered while traversing the list.
- * Returns true if the number of right parentheses matches the number of left parentheses, indicating proper closure.
- * Otherwise, returns false.
+ * Checks whether parentheses in the given
+ * linked list of nodes are properly closed.
+ * Counts the number of left and right parentheses
+ * encountered while traversing the list.
+ * Returns true if the number of right
+ * parentheses matches the number of left parentheses,
+ * indicating proper closure. Otherwise, returns false.
  */
 bool	is_closed(t_node *curr)
 {
@@ -69,27 +74,38 @@ bool	is_closed(t_node *curr)
 
 bool	c_op(t_node *r, t_node *l)
 {
-    if (r->type == E_CMD || r->type == RIGHT_PAR || !(r->type % 5))
-        return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
-    else if (l->type == S_CMD || l->type == LEFT_PAR || !(r->type % 5))
-        return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
+	if (r->type == E_CMD || r->type == RIGHT_PAR || !(r->type % 5))
+		return (ms_errors("fry@shell",
+				"syntax error near unexpected token"), false);
+	else if (l->type == S_CMD || l->type == LEFT_PAR || !(r->type % 5))
+		return (ms_errors("fry@shell",
+				"syntax error near unexpected token"), false);
 	return (true);
 }
+
 bool	c_red(t_node *r)
 {
-    if (!(r->type % 5) || !(r->type % 7) || !(r->type % 3) || r->type == E_CMD)
-         return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
+	if (!(r->type % 5) || !(r->type % 7) || !(r->type % 3) || r->type == E_CMD)
+		return (ms_errors("fry@shell",
+				"syntax error near unexpected token"), false);
 	return (true);
 }
+
 bool	c_par(int type, t_node *r, t_node *l)
 {
 	(void)l;
-    if (type == RIGHT_PAR)
-        if (!(r->type % 2))
-            return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
-    else
-        if (!(r->type % 5))
-            return (ms_errors("fry@shell", "syntax error near unexpected token"), false);
+	if (type == RIGHT_PAR)
+	{
+		if (!(r->type % 2))
+			return (ms_errors("fry@shell",
+					"syntax error near unexpected token"), false);
+	}
+	else
+	{
+		if (!(r->type % 5))
+			return (ms_errors("fry@shell",
+					"syntax error near unexpected token"), false);
+	}
 	return (true);
 }
 
@@ -104,7 +120,7 @@ bool	is_clean(t_list *list)
 	t_node	*curr;
 	t_node	*n;
 	t_node	*p;
-	bool		status;
+	bool	status;
 
 	status = true;
 	curr = list->head;

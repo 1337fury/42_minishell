@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _execve.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/28 15:14:13 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:31:24 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,23 @@ char    *find_exec(char *cmd)
 ** If the command is found, it attempts to execute it using execve and passes the command arguments and environment variables.
 ** If the command is not found or an error occurs during execution, it prints an error message.
 */
-void	_execve(char *cmd, char **args)
+void	_execve(t_command *cmd)
 {
-	char    *cmd_e;
-	t_envp	*env;
+	char	*cmd_e;
+	char	**result;
 
-	env = g_gen.envp;
-	cmd_e = find_exec(cmd);
-	if (!cmd_e)
-        exit (127);
-	execve(cmd_e, args, env->env_vars);
-	ms_errors(cmd_e, strerror(errno));
+	if (check_builtin(cmd->data[0]))
+	{
+		exec_builtins(cmd, true);
+		exit (g_gen.e_status);
+	}
+	else
+	{
+		result = convert_env(&g_gen);
+		cmd_e = find_exec(cmd->data[0]);
+		if (!cmd_e)
+    	    exit (127);
+		execve(cmd_e, cmd->data, result);
+		ms_errors(cmd_e, strerror(errno));
+	}
 }

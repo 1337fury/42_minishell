@@ -1,10 +1,12 @@
-NAME = libftprintf.a
+NAME = libftprintf.a 
 
 CC = cc
 
 CFLAFGS = -Wall -Wextra -Werror
 
 LIB = ./libft/libft.a
+
+FT_MALLOC = ./ft_malloc/ft_malloc.a
 
 INC = -I INCLUDES
 
@@ -31,25 +33,28 @@ all : $(NAME)
 
 libftcomp :
 	@make all -C ./libft
+	@make -C ./ft_malloc
 
 $(NAME) : libftcomp $(OBJS) $(LIB)
-	@libtool -static -o $@ $(LIB) $(OBJS)
+	@libtool -static -o $@ $(LIB) $(FT_MALLOC) $(OBJS)
 
 $(OBJS) : $(OBJS_PATH) $(SRCS)
-	$(CC) $(CFLAFGS) $(INC) -c $(SRCS)
-	mv $(OBJS_NAME) $(OBJS_PATH) 
+	@$(CC) $(CFLAFGS) $(INC) -c $(SRCS)
+	@mv $(OBJS_NAME) $(OBJS_PATH) 
 
 $(OBJS_PATH) :
-	mkdir OBJS 2> /dev/null || true
+	@mkdir OBJS 2> /dev/null || true
 
 clean :
-	make clean -C ./libft
-	rm -f $(OBJS)
-	rmdir -p $(OBJS_PATH) 2> /dev/null || true
+	@make clean -C ./libft
+	@make clean -C ./ft_malloc
+	@rm -f $(OBJS)
+	@rmdir -p $(OBJS_PATH) 2> /dev/null || true
 
 fclean : clean
-	make fclean -C ./libft
-	rm -f $(NAME)
+	@make fclean -C ./libft
+	@make fclean -C ./ft_malloc
+	@rm -f $(NAME)
 
 re : fclean all
 

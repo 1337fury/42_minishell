@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/29 08:41:25 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:09:27 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_general	g_gen;
+
 /**
  * Executes a command in a separate process using fork().
- * Closes file descriptors and sets up input/output redirection based on the command and his position.
+ * Closes file descriptors and sets up input/output
+ * redirection based on the command and his position.
  * Invokes the _execve() function to execute the command.
  * Handles specific error conditions and exits the child process accordingly.
  * If the command is the tail of the family, closes the pipes.
@@ -29,7 +32,7 @@ void	multi_commands(t_command *cmd, t_family *fam, int *pids)
 		close_fds(cmd, fam);
 		if (setup_outin(cmd, fam->size) != 4)
 			exit(1);
-		_execve(cmd->data[0], cmd->data);
+		_execve(cmd);
 		if (errno == ENOENT)
 			exit(127);
 		if (errno == EACCES || errno == ENOTDIR)
@@ -79,7 +82,7 @@ int	single_outin(t_command *cmd)
 	int	write;
 
 	if (cmd->in == -1 || cmd->out == -1)
-		return (ms_errors("open", "no such file or directorie !"), 1);
+		return (ms_errors("open", "No such file or directory !"), 1);
 	read = STDIN_FILENO;
 	write = STDOUT_FILENO;
 	if (cmd->in != 0)
@@ -106,7 +109,7 @@ void	single_command(t_command *cmd, int *pids)
 	{
 		if (single_outin(cmd))
 			exit(1);
-		_execve(cmd->data[0], cmd->data);
+		_execve(cmd);
 		if (errno == ENOENT)
 			exit(127);
 		if (errno == EACCES || errno == ENOTDIR)
@@ -115,10 +118,13 @@ void	single_command(t_command *cmd, int *pids)
 	}
 }
 
-/**
- * Executes a family of commands, which can be either piped commands or a single command.
- * If the family is a set of piped commands, executes them using the `exec_pipes_cmds` function.
- * If the family is a single command, executes it using the `single_command` function.
+/*
+ * Executes a family of commands,
+   which can be either piped commands or a single command.
+ * If the family is a set of piped commands,
+   executes them using the `exec_pipes_cmds` function.
+ * If the family is a single command,
+   executes it using the `single_command` function.
  * Waits for the child processes to finish executing and updates the exit status.
  */
 void	exec_family(t_family *family)
@@ -126,20 +132,28 @@ void	exec_family(t_family *family)
 	t_command	*curr_cmd;
 	int			inx_exit[2];
 	int			*child_pid;
+	int			sh_wait;
 
 	if (!family || !family->head || family->already_seen)
 		return ;
 	child_pid = ft_calloc(family->size, sizeof(int));
 	curr_cmd = family->head;
+	sh_wait = true;
 	if (check_pipe(curr_cmd))
 		exec_pipes_cmds(family, child_pid);
-	// else if (check_builtin(*curr_cmd->data))
-	//     exec_builtins(curr_cmd);
+	else if (check_builtin(*curr_cmd->data))
+	{
+		exec_builtins(curr_cmd, false);
+		sh_wait = false;
+	}
 	else
 		single_command(curr_cmd, child_pid);
-	inx_exit[0] = -1;
-	while (++inx_exit[0] < family->size)
-		waitpid(child_pid[inx_exit[0]], &inx_exit[1], 0);
-	g_gen.e_status = WEXITSTATUS(inx_exit[1]);
+	if (sh_wait)
+	{
+		inx_exit[0] = -1;
+		while (++inx_exit[0] < family->size)
+			waitpid(child_pid[inx_exit[0]], &inx_exit[1], 0);
+		g_gen.e_status = WEXITSTATUS(inx_exit[1]);
+	}
 	free(child_pid);
 }

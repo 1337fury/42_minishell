@@ -3,60 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 16:14:59 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:29:09 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MINISHELL_H
+#ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "executer.h"
+# include "ft_malloc.h"
+# include "executer.h"
+# include "expander.h"
+# include "lexer.h"
+# include "libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
+# include <fcntl.h>
+# include <dirent.h>
+# include <errno.h>
+# include <string.h>
 
-#include "libft.h"
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <fcntl.h>
-#include <dirent.h>
-#include <errno.h>
-#include <string.h>
+# define ERR_SQUOTE "unclosed single quotes"
+# define ERR_DQUOTE "unclosed double quotes"
 
-#define ERR_SQUOTE "unclosed single quotes"
-#define ERR_DQUOTE "unclosed double quotes"
+# define LEFT -1
+# define RIGHT -2
+# define N_LINE 10
 
-#define LEFT -1
-#define RIGHT -2
-#define N_LINE 10
-
-# define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
-# define WHITE "\033[0;37m"
+# define PATH_MAX 1024
 
 /*
 	- `Global RULES`
 */
 
-typedef struct s_envp
-{
-	char	**env_vars;
-	int		size;
-}	t_envp;
+typedef struct s_env {
+	char			*name;
+	char			*value;
+	bool			single;
+	struct s_env	*prev;
+	struct s_env	*next;
+}	t_env;
 
 typedef struct s_general
 {
-	t_envp	*envp;
+	t_env	*ev;
+	t_env	*exp;
 	int		e_status;
 }			t_general;
 
 t_general	g_gen;
 
-void	ms_errors(char *part, char *usage/*, int ex_status*/);
+void	ms_errors(char *part, char *usage);
+int		calc_len(t_env *env);
+char	**convert_env(t_general *g_master);
+int		print_env(t_env *exp);
+void	imprint_env_data(char **envp, t_env *head);
+t_env	*create_env(char **envp);
+int		p_error(void);
 
+int		builtins_exit(t_general *g_master, int status);
+int		_change_dir(t_general *g_master, char *arg);
+void	_echo(t_general *g_master, char **arg);
+void	_env(t_general *g_master);
+void	_exit_shell(t_general *g_master, char **arg);
+int		_export(t_general *g_master, char **arg);
+void	_pwd(t_general *g_master);
+void	_unset(t_general *g_master, char **var);
+t_env	*get_env(const char *name, t_env *env);
+char	**parse_variable(char *arg);
+int		check_variable_validity(char *arg);
+int		insert_to_export(t_env *exp, char **var, char *arg);
+int		insert_to_env(t_env *en, char **var, char *arg);
+char	**export_split(char *arg);
+void	export_ex2(t_general *g_master, char **parse, char *arg);
+void	export_ex(t_general *g_master, char **parse, char *arg);
+int		change_value(t_env *envir, char **var);
 #endif

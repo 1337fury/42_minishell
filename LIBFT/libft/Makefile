@@ -50,21 +50,22 @@ SRC =  \
  ./ft_lstadd_back.c \
  ./ft_lstdelone.c \
  ./ft_lstclear.c \
- ./s_strjoin.c
+ ./s_strjoin.c \
+ ./ft_strcmp.c
 
 OBJECTS = $(SRC:.c=.o)
 
 $(NAME) : $(OBJECTS)
-	ar -rcs $(NAME) $(OBJECTS)
+	@ar -rcs $(NAME) $(OBJECTS)
 
 %.o:%.c
-	$(CC) $(CFLAGS) -c $<
+	@$(CC) $(CFLAGS) -c $<
 
 clean :
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 

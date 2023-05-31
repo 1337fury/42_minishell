@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 22:07:56 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 19:51:56 by hmeftah          ###   ########.fr       */
+/*   Created: 2023/03/29 16:56:10 by hmeftah           #+#    #+#             */
+/*   Updated: 2023/05/31 18:21:50 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_putstr_fd(char *s, int fd)
+void	_pwd(t_general *g_master)
 {
-	int	i;
+	char	*dir;
 
-	i = 0;
-	while (s && s[i])
-		write(fd, &s[i++], 1);
-	return (1);
+	dir = NULL;
+	dir = getcwd(dir, PATH_MAX);
+	ft_putstr_fd(dir, 1);
+	free (dir);
+	builtins_exit(g_master, 0);
 }

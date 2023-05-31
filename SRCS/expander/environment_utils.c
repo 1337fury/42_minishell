@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   environment_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/28 15:16:31 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:24:09 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
+
+extern t_general	g_gen;
 
 //calc the length of a string until the first occurrence of the character '=' 
 int	len_until_eq(char *s)
@@ -21,7 +23,7 @@ int	len_until_eq(char *s)
 	if (!s)
 		return (0);
 	len = 0;
-	while(s[len] && s[len] != '=')
+	while (s[len] && s[len] != '=')
 		len++;
 	return (len);
 }
@@ -40,7 +42,10 @@ bool	has_a_value(char *var)
 	return (false);
 }
 
-//compares the key portion of an environment variable with a target string and returns a int value indicating whether they are equal or not.
+/*
+compares the key portion of an environment variable with a target
+string and returns a int value indicating whether they are equal or not.
+*/
 int	fry_compare(char *var, char *target)
 {
 	int		eq_len;
@@ -57,29 +62,30 @@ int	fry_compare(char *var, char *target)
 	return (free(key), result);
 }
 
-//retrieves the value of an environment variable identified by the given target name from the list of environment variables.
+/*
+retrieves the value of an environment variable identified
+by the given target name from the list of environment variables.
+*/
 char	*retrieve_env_var(char *target)
 {
 	int		i;
 	char	**k_v;
-	t_envp	*envp;
+	char	**result;
 
 	i = 0;
 	if (!target)
 		return (NULL);
 	if (ft_strchr(target, '?'))
 		return (ft_itoa(g_gen.e_status));
-	envp = g_gen.envp;
-	while (envp->env_vars[i])
+	result = convert_env(&g_gen);
+	while (result[i])
 	{
-		if (has_a_value(envp->env_vars[i]) && fry_compare(envp->env_vars[i], target) == 0)
+		if (has_a_value(result[i]) && fry_compare(result[i], target) == 0)
 		{
-			k_v = ft_split(envp->env_vars[i], '=');
-			// free(target);
+			k_v = ft_split(result[i], '=');
 			return (free(k_v[0]), k_v[1]);
 		}
 		i++;
 	}
-	// free(target);
 	return (ft_strdup(""));
 }

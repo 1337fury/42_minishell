@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:26:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/26 18:38:15 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:33:37 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdbool.h>
+# include <stdbool.h>
 
 // struct for Minishell lexer
 typedef struct s_node
@@ -56,7 +56,6 @@ char	*ft_strtrim(char const *s1, const char *set);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_putchar_fd(char c, int fd);
 char	*ft_itoa(int n);
-void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -67,10 +66,12 @@ bool	is_space(char c);
 bool	is_empty(char *s);
 t_node	*ft_lstnew(char *data, int type);
 void	ft_lstadd_front(t_node **lst, t_node *new);
+int		ft_putstr_fd(char *s, int fd);
 int		ft_lstsize(t_node *lst);
 t_node	*ft_lstlast(t_node *lst);
 void	ft_lstadd_back(t_node **lst, t_node *new);
 void	ft_lstdelone(t_node *lst);
 void	ft_lstclear(t_node **lst);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
