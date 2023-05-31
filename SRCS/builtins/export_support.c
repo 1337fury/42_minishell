@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:15:32 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/30 20:34:29 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:07:29 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	insert_to_export(t_env *exp, char **var, char *arg)
 		tmp = tmp->next;
 	}
 	tmp = env;
-	tmp->next = (t_env *)malloc(sizeof(t_env));
+	tmp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
 	tmp->next->name = ft_strdup(var[0]);
 	tmp->next->single = true;
 	if (ft_strchr(arg, '='))
@@ -96,7 +96,7 @@ int	insert_to_env(t_env *en, char **var, char *arg)
 		tmp = tmp->next;
 	}
 	tmp = env;
-	tmp->next = (t_env *)malloc(sizeof(t_env));
+	tmp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
 	tmp->next->name = ft_strdup(var[0]);
 	tmp->next->single = true;
 	if (ft_strchr(arg, '='))

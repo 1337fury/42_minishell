@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 01:28:35 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:55 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:10:50 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	**sub_split(char **res, char const *s, char c, int words_count)
 		while (*s && *s == c)
 			s++;
 		word_len = word_length(s, c);
-		res[i] = (char *)malloc(sizeof(char) * word_len + 1);
+		res[i] = ft_malloc(sizeof(char) * word_len + 1, NULL, ALLOC, NULL);
 		j = 0;
 		while (j < word_len)
 		{
@@ -77,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words_count = counter(s, c);
-	res = (char **)malloc(sizeof(char *) * (words_count + 1));
+	res = ft_malloc(sizeof(char *) * (words_count + 1), NULL, ALLOC, NULL);
 	if (!res)
 		return (NULL);
 	res = sub_split(res, s, c, words_count);

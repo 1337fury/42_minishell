@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 18:42:19 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:09:50 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*create_list(void)
 {
 	t_list	*lst;
 
-	lst = (t_list *)malloc(sizeof(t_list));
+	lst = (t_list *)ft_malloc(sizeof(t_list), NULL, ALLOC, NULL);
 	if (!lst)
 		return (NULL);
 	lst->size = 0;
@@ -35,7 +35,7 @@ char	*fry_char_to_str(char c)
 
 	if (!c)
 		return (NULL);
-	result = (char *)malloc(2 * sizeof(char));
+	result = (char *)ft_malloc(2 * sizeof(char), NULL, ALLOC, NULL);
 	if (!result)
 		return (NULL);
 	result[0] = c;

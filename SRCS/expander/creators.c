@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creators.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/26 20:23:45 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:09:01 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // Creates a new table structure
 void	create_table(t_table **table)
 {
-	*table = (t_table *)malloc(sizeof(t_table));
+	*table = (t_table *)ft_malloc(sizeof(t_table), NULL, ALLOC, NULL);
 	if (*table == NULL)
 		return ;
 	(*table)->head = NULL;
@@ -28,7 +28,7 @@ t_row   *create_row(int type)
 {
     t_row   *row;
 
-    row = (t_row *)malloc(sizeof(t_row));
+    row = (t_row *)ft_malloc(sizeof(t_row), NULL, ALLOC, NULL);
     if (!row)
         return (NULL);
     row->type = type;
@@ -43,7 +43,7 @@ t_command   *create_t_command(int type)
 {
     t_command   *command;
 
-    command = (t_command *)malloc(sizeof(t_command));
+    command = (t_command *)ft_malloc(sizeof(t_command), NULL, ALLOC, NULL);
     if (!command)
         return (NULL);
 	ft_bzero(command->fds, 0);
@@ -64,7 +64,7 @@ t_family    *family_init()
 {
     t_family    *family;
 
-    family = (t_family *)malloc(sizeof(t_family));
+    family = (t_family *)ft_malloc(sizeof(t_family), NULL, ALLOC, NULL);
     if (!family)
         return (NULL);
     family->already_seen = 0;
