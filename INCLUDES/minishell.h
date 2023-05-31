@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 20:29:09 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:22:37 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <dirent.h>
 # include <errno.h>
 # include <string.h>
+# include <limits.h>
 
 # define ERR_SQUOTE "unclosed single quotes"
 # define ERR_DQUOTE "unclosed double quotes"
@@ -36,8 +37,6 @@
 # define LEFT -1
 # define RIGHT -2
 # define N_LINE 10
-
-# define PATH_MAX 1024
 
 /*
 	- `Global RULES`
