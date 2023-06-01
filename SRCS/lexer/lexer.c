@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/29 15:45:09 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:05:27 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_list *fry_lexer(char *cmd)
 	if (!is_clean(list))
 	{
 		g_gen.e_status = 258;
+		// ft_malloc(0, NULL, FREE_ALL, NULL);
 		return (NULL);
 	}
 	return (list);

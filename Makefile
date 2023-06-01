@@ -47,8 +47,8 @@ libcomp :
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@tput el
 	@$(CC) $(FLAGS) $(READ) $(OBJECTS) $(LIB_A) -o $(NAME)
-	@echo "\n$(NAME): $(GREEN)$(NAME) object files was created$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+	@echo "$(RESET)\n$(NAME): $(GREEN)$(NAME) object files was created"
+	@echo "$(RESET)$(NAME): $(GREEN)$(NAME) was created"
 
 $(OBJECTS_DIRECTORY):
 	mkdir -p $(OBJECTS_DIRECTORY)
@@ -56,32 +56,33 @@ $(OBJECTS_DIRECTORY):
 $(OBJECTS_DIRECTORY)%.o : srcs/lexer/%.c
 	@tput cuu1
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
-	@echo -n "Compiling $(GREEN)$@"
+	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/expander/%.c
 	@tput cuu1
-	$(CC) $(FLAGS) $(INC) -c $< -o $@
-	@echo -n "Compiling $(GREEN)$@"
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/executer/%.c
 	@tput cuu1
-	$(CC) $(FLAGS) $(INC) -c $< -o $@
-	@echo -n "Compiling $(GREEN)$@"
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/minishell/%.c
 	@tput cuu1
-	$(CC) $(FLAGS) $(INC) -c $< -o $@
-	@echo -n "Compiling $(GREEN)$@"
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/builtins/%.c
 	@tput cuu1
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
-	@echo -n "Compiling $(GREEN)$@"
+	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/assist/%.c
 	@tput cuu1
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
-	@echo -n "Compiling $(GREEN)$@"
+	@echo "Compiling $(GREEN)$@"
+
 .PHONY: all clean fclean re
 
 clean:
