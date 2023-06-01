@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:47:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/27 11:42:35 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:02:13 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	*allocate_memory(unsigned int size, t_address **addresses)
 	void		*ptr;
 	t_address	*node;
 
-	ptr = malloc(size);
+	ptr = ft_malloc(size, NULL, ALLOC, NULL);
 	if (ptr == NULL)
 		return (NULL);
 	node = create_node(ptr, size);

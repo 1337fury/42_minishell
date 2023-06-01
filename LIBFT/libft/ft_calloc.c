@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:05:55 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/03/02 15:33:38 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:03:05 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_calloc(size_t count, size_t size)
 	if (size >= SIZE_MAX && count >= SIZE_MAX)
 		return (0);
 	s = count * size;
-	dest = (char *)malloc(s);
+	dest = (char *)ft_malloc(s, NULL, ALLOC, NULL);
 	if (!dest)
 		return (NULL);
 	ft_memset(dest, 0, s);

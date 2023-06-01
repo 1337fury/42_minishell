@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_strjoin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:37:23 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/26 18:37:48 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:10:09 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ char	*join_with_space(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = (char *)malloc(sizeof(char) * 1);
+		s1 = (char *)ft_malloc(sizeof(char) * 1, NULL, ALLOC, NULL);
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)
 		return (NULL);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	res = (char *)malloc(sizeof(char ) * (s1_len + s2_len + 1 + 1));
+	res = ft_malloc(1 * (s1_len + s2_len + 1 + 1), NULL, ALLOC, NULL);
 	if (!res)
 		return (NULL);
 	ft_memcpy(res, s1, s1_len);

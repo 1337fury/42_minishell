@@ -61,17 +61,29 @@ $(OBJECTS_DIRECTORY)%.o : srcs/lexer/%.c
 $(OBJECTS_DIRECTORY)%.o : srcs/expander/%.c
 	@tput cuu1
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+<<<<<<< HEAD
 	@echo "Compiling $(GREEN)$@"
+=======
+	@echo -n "Compiling $(GREEN)$@"
+>>>>>>> 49050b771ae6ad595ae9b9a242adb4cdfd637fff
 
 $(OBJECTS_DIRECTORY)%.o : srcs/executer/%.c
 	@tput cuu1
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+<<<<<<< HEAD
 	@echo "Compiling $(GREEN)$@"
+=======
+	@echo -n "Compiling $(GREEN)$@"
+>>>>>>> 49050b771ae6ad595ae9b9a242adb4cdfd637fff
 
 $(OBJECTS_DIRECTORY)%.o : srcs/minishell/%.c
 	@tput cuu1
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+<<<<<<< HEAD
 	@echo "Compiling $(GREEN)$@"
+=======
+	@echo -n "Compiling $(GREEN)$@"
+>>>>>>> 49050b771ae6ad595ae9b9a242adb4cdfd637fff
 
 $(OBJECTS_DIRECTORY)%.o : srcs/builtins/%.c
 	@tput cuu1

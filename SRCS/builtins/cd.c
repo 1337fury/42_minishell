@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:06:32 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/31 16:43:08 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/05/31 20:07:02 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	insert_node(t_env *env, char *name, char *value)
 		tmp = tmp->next;
 	}
 	tmp = last;
-	tmp->next = (t_env *)malloc(sizeof(t_env *));
+	tmp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
 	tmp->next->name = ft_strdup(name);
 	tmp->next->value = ft_strdup(value);
 	tmp->next->next = NULL;
