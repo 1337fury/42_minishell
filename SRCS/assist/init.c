@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:47:43 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/01 16:37:37 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:21:28 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**convert_env(t_general *g_master)
 
 	i = 0;
 	env = g_master->ev;
-	result = ft_calloc(calc_len(env) + 1, sizeof(char *));
+	result = ft_calloc((calc_len(env) + 1), sizeof(char *));
 	if (!result)
 		return (NULL);
 	while (env->next)
@@ -30,8 +30,6 @@ char	**convert_env(t_general *g_master)
 		tmp_line = ft_strjoin(env->name, "=");
 		tmp_res = ft_strjoin(tmp_line, env->value);
 		result[i++] = ft_strdup(tmp_res);
-		// free(tmp_line);
-		// free(tmp_res);
 		env = env->next;
 	}
 	return (result);
@@ -76,7 +74,6 @@ void	imprint_env_data(char **envp, t_env *head)
 		hold = ft_split(envp[i], '=');
 		temp->name = ft_strdup(hold[0]);
 		temp->value = ft_strdup(hold[1]);
-		//free_2d_array(hold);
 		temp = temp->next;
 		i++;
 	}
@@ -90,14 +87,14 @@ t_env	*create_env(char **envp)
 	int		i;
 
 	i = 0;
-	head = (t_env *)ft_calloc(1, sizeof(t_env));
+	head = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
 	head->prev = NULL;
 	temp = head;
 	while (envp[i + 1])
 	{
 		prev = temp;
 		temp->single = false;
-		temp->next = (t_env *)ft_calloc(1, sizeof(t_env));
+		temp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
 		temp = temp->next;
 		temp->prev = prev;
 		i++;

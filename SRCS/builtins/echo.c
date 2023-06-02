@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:06:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/31 18:19:54 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:25:33 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,10 @@ void	_echo(t_general *g_master, char **arg)
 	}
 	else
 	{
-		if (arg[1] || arg[2])
-		{
-			if (!ft_strcmp(arg[1], "-n"))
-				print_without_newline(home, arg);
-			else if (ft_strcmp(arg[1], "-n"))
-				print_with_newline(home, arg);
-		}
+		if (!ft_strcmp(arg[1], "-n"))
+			print_without_newline(home, arg);
+		else if (ft_strcmp(arg[1], "-n"))
+			print_with_newline(home, arg);
 	}
 	builtins_exit(g_master, 0);
 }

@@ -1,12 +1,12 @@
 NAME                = minishell
 CC                  = cc
-FLAGS               = -Wall -Wextra -Werror #-fsanitize=address
-READ                = -lreadline
+FLAGS               = -Wall -Wextra -Werror -fsanitize=address
+READ                = -lreadline -L ~/.brew/opt/readline/lib
 
-INC                 = -I INCLUDES -Ilibft/includes -Ilibft/libft -Ilibft/ft_malloc
+INC                 = -I INCLUDES -Ilibft/includes -Ilibft/libft -Ilibft/ft_malloc -I ~/.brew/opt/readline/include
 LIB_A               = libftprintf.a
 
-ASSIST_SRC_LIST		= helper.c init.c
+ASSIST_SRC_LIST		= helper.c init.c process_cmdline.c
 BUILTINS_SRC_LIST	= cd.c echo.c env.c exit.c export.c export_support.c pwd.c unset.c
 LEXER_SRC_LIST      = lexer.c backstage.c episode_one.c episode_two.c episode_three.c last_episode.c
 EXPANDER_SRC_LIST   = expander.c build_cmd.c creators.c deletion.c environment_utils.c expansion.c \
@@ -55,32 +55,32 @@ $(OBJECTS_DIRECTORY):
 
 $(OBJECTS_DIRECTORY)%.o : srcs/lexer/%.c
 	@tput cuu1
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) $(INC)  -c $< -o $@
 	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/expander/%.c
 	@tput cuu1
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) $(INC)  -c $< -o $@
 	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/executer/%.c
 	@tput cuu1
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) $(INC)  -c $< -o $@
 	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/minishell/%.c
 	@tput cuu1
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) $(INC)  -c $< -o $@
 	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/builtins/%.c
 	@tput cuu1
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) $(INC)  -c $< -o $@
 	@echo "Compiling $(GREEN)$@"
 
 $(OBJECTS_DIRECTORY)%.o : srcs/assist/%.c
 	@tput cuu1
-	@$(CC) $(FLAGS) $(INC) -c $< -o $@
+	@$(CC) $(FLAGS) $(INC)  -c $< -o $@
 	@echo "Compiling $(GREEN)$@"
 
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:47:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/02 17:22:47 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:58:16 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,28 @@ static void	*allocate_memory(unsigned int size, t_address **addresses)
 	return (ptr);
 }
 
-// MODIFIED
-#include <stdio.h>
 static void	*free_memory(t_address **addresses)
 {
-	t_address	*suivant;
+	t_address	*t_node;
 
-	suivant = *addresses;
+	t_node = *addresses;
 	if (!*addresses)
 		return (NULL);
-	while (*addresses != NULL)
+	while (t_node->next)
 	{
-		suivant = suivant->next;
-		_destroy_node(*addresses);
-		*addresses = suivant;
+		t_node = t_node->next;
+		_destroy_node(t_node->prev);
 	}
+	_destroy_node(t_node);
 	*addresses = NULL;
 	return (NULL);
 }
 
-static void	*free_pointer(void *ptr, t_address *addresses)
+static void	*free_pointer(void *ptr, t_address **addresses)
 {
 	t_address	*temp;
 
-	temp = addresses;
+	temp = *addresses;
 	while (temp)
 	{
 		if (temp->ptr == ptr)
@@ -64,6 +62,7 @@ static void	*free_pointer(void *ptr, t_address *addresses)
 			temp->size = 0;
 			temp->ptr = NULL;
 			free(temp);
+			temp = NULL;
 			return (NULL);
 		}
 		temp = temp->next;
@@ -109,7 +108,7 @@ void	*ft_malloc(unsigned int size, void	*free_ptr,
 	if (type == ALLOC)
 		return (allocate_memory(size, &addresses));
 	else if (type == FREE)
-		return (free_pointer(free_ptr, addresses));
+		return (free_pointer(free_ptr, &addresses));
 	else if (type == FREE_ALL)
 		return (free_memory(&addresses));
 	else if (type == T_SIZE)

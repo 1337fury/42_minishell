@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 18:53:48 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:56:17 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	_execve(t_command *cmd)
 		result = convert_env(&g_gen);
 		cmd_e = find_exec(cmd->data[0]);
 		if (!cmd_e)
-    	    exit (127);
+			exit (127);
 		execve(cmd_e, cmd->data, result);
 		ms_errors(cmd_e, strerror(errno));
 	}

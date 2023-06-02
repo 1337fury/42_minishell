@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 01:28:35 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 15:20:50 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:03:35 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words_count = counter(s, c);
-	res = ft_malloc(sizeof(char *) * (words_count + 1), NULL, ALLOC, NULL);
+	res = ft_calloc((words_count + 1), sizeof(char *));
 	if (!res)
 		return (NULL);
 	res = sub_split(res, s, c, words_count);

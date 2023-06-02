@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   last_episode.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 20:09:50 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/02 19:56:23 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,20 @@ char	*fry_char_to_str(char c)
  */
 bool	is_closed(t_node *curr)
 {
-	int	left;
-	int	right;
+	int	sin;
+	int	doub;
 
-	left = 0;
-	right = 0;
+	sin = 0;
+	doub = 0;
 	while (curr != NULL)
 	{
-		if (curr->type == LEFT_PAR)
-			left++;
-		else if (curr->type == RIGHT_PAR)
-			right++;
+		if (curr->type == SQUOTE)
+			sin++;
+		else if (curr->type == DQUOTE)
+			doub++;
 		curr = curr->next;
 	}
-	if (right != left)
+	if (doub % 2 || sin % 2)
 		return (false);
 	return (true);
 }
@@ -102,7 +102,7 @@ bool	c_par(int type, t_node *r, t_node *l)
 	}
 	else
 	{
-		if (!(r->type % 5))
+		if (!(r->type % 5) || !(l->type % 2))
 			return (ms_errors("fry@shell",
 					"syntax error near unexpected token"), false);
 	}
@@ -126,7 +126,7 @@ bool	is_clean(t_list *list)
 	curr = list->head;
 
 	if (!is_closed(curr))
-		return (ms_errors("syntax error", "unclosed bar"), false);
+		return (ms_errors("syntax error", "unclosed quotes"), false);
 	while (curr->type != E_CMD)
 	{
 		n = retrieve_node(curr->next, RIGHT);

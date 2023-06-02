@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 15:19:56 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:41:19 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ void	squote_handler(t_list *lexer, t_scanner *point, char *cmd)
 		value = ft_substr(cmd, point->start, point->current - point->start);
 		ft_lstadd_back(&(lexer->head), ft_lstnew(value, STR));
 	}
-	if (cmd[point->current] != '\'')
-		ms_errors("syntax error", "enclosed quotes");
-	ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\'"), SQUOTE));
+	if (cmd[point->current] == '\'')
+		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\'"), SQUOTE));
 	point->current++;
 }
 /**

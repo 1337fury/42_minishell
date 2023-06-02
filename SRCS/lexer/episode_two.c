@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/27 21:38:16 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:50:14 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
 	point_stop = point->current - point->start;
 	if (word.is)
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
-	if (cmd[point->current] != '\"')
-		ms_errors("syntax error", "enclosed quotes");
 	if (empty.is)
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup(""), STR));
-	ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\""), DQUOTE));
+	if (cmd[point->current] == '"')
+		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\""), DQUOTE));
 	point->current++;
 }
 /**
