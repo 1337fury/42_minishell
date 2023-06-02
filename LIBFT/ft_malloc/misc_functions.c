@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:54:30 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/01 16:54:54 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:18:26 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	_destroy_node(t_address *node)
 		return ;
 	if (node->ptr)
 	{
-		// free (node->ptr);
+		free (node->ptr);
 		node->dealloc = 1;
 		node->ptr = NULL;
 		node->size = 0;

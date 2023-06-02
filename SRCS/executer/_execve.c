@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/01 16:25:51 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:53:48 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*_pathchr(char *cmd)
 */
 char    *find_exec(char *cmd)
 {
+	if (!cmd)
+		return (ms_errors(cmd, "command not found"), NULL);
     if (ft_strchr(cmd, '/'))
 	{
 		if (!access(cmd, F_OK))

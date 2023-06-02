@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 19:57:57 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/04/20 19:09:51 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:23:23 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_lstdelone(t_node *lst)
 	if (!lst)
 		return ;
 	// EMMMMMMMMMMMM !
-	free(lst->value);
+	// free(lst->value);
 	lst->prev = NULL;
 	lst->next = NULL;
-	free(lst);
+	// free(lst);
 }

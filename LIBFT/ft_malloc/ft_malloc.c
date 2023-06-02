@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:47:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/01 17:00:24 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:22:47 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	*allocate_memory(unsigned int size, t_address **addresses)
 }
 
 // MODIFIED
+#include <stdio.h>
 static void	*free_memory(t_address **addresses)
 {
 	t_address	*suivant;

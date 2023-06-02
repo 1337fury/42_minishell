@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/27 13:13:31 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:41:03 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ bool	check_builtin(char *data)
 {
 	char	*builtins;
 
+	if (!data)
+		return (false);
 	builtins = "echo,cd,export,env,unset,pwd,exit,";
 	if (ft_strnstr(builtins, data, ft_strlen(builtins)))
 		return (true);
