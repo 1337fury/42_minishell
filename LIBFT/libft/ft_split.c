@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 01:28:35 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 20:10:50 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:22:30 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words_count = counter(s, c);
-	res = ft_malloc(sizeof(char *) * (words_count + 1), NULL, ALLOC, NULL);
+	res = ft_calloc((words_count + 1), sizeof(char *));
 	if (!res)
 		return (NULL);
 	res = sub_split(res, s, c, words_count);

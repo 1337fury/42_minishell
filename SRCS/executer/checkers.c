@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/27 13:13:31 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:43:23 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,16 @@ int	check_pipe(t_command *curr)
  */
 bool	check_builtin(char *data)
 {
-	char	*builtins;
+	int			i;
+	static char	*builtins[15] = {"echo", "cd", "export",
+		"env", "unset", "pwd", "exit", NULL};
 
-	builtins = "echo,cd,export,env,unset,pwd,exit,";
-	if (ft_strnstr(builtins, data, ft_strlen(builtins)))
-		return (true);
+	i = 0;
+	while (builtins[i])
+	{
+		if (!ft_strcmp(builtins[i], data))
+			return (true);
+		i++;
+	}
 	return (false);
 }

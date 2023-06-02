@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _execve.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/01 16:25:51 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:21:44 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	_execve(t_command *cmd)
 		result = convert_env(&g_gen);
 		cmd_e = find_exec(cmd->data[0]);
 		if (!cmd_e)
-    	    exit (127);
+			exit (127);
 		execve(cmd_e, cmd->data, result);
 		ms_errors(cmd_e, strerror(errno));
 	}

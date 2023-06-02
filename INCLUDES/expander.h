@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:46:59 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 19:45:27 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/02 16:09:29 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 # include "libft.h"
 # include "lexer.h"
-
-# define PERMISSION 0644
-# define LESS_FLAG O_RDONLY
-# define GREAT_FLAG O_RDWR | O_CREAT | O_TRUNC
-# define APPEND_FLAG O_RDWR | O_CREAT | O_APPEND
 
 # define CMD_ROW 600
 //Great then 1000

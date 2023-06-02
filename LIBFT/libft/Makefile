@@ -1,5 +1,7 @@
 NAME = libft.a
 
+FT_MALLOC = ft_malloc.a
+
 all : $(NAME)
 
 CC = cc
@@ -53,16 +55,21 @@ SRC =  \
  ./s_strjoin.c \
  ./ft_strcmp.c
 
+ SRC_MALLOC_OBJ = $(addprefix ../ft_malloc/, ft_malloc.o misc_functions.o misc_functions2.o)
+
 OBJECTS = $(SRC:.c=.o)
 
-$(NAME) : $(OBJECTS)
-	@ar -rcs $(NAME) $(OBJECTS)
+ft_malloc:
+	@make -C ../ft_malloc
+
+$(NAME) : ft_malloc $(OBJECTS) $(SRC_MALLOC_OBJ)
+	@ar -rcs $(NAME) $(OBJECTS) $(SRC_MALLOC_OBJ)
 
 %.o:%.c
-	@$(CC) $(CFLAGS) -c $<
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJECTS) $(SRC_MALLOC_OBJ)
 
 fclean : clean
 	@rm -f $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 19:34:05 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:18:58 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ typedef struct s_env {
 
 typedef struct s_general
 {
-	t_env	*ev;
-	t_env	*exp;
-	int		e_status;
+	char				*line;
+	t_env				*ev;
+	t_env				*exp;
+	int					e_status;
+	struct sigaction	sa;
 }			t_general;
 
 t_general	g_gen;
@@ -88,4 +90,9 @@ char	**export_split(char *arg);
 void	export_ex2(t_general *g_master, char **parse, char *arg);
 void	export_ex(t_general *g_master, char **parse, char *arg);
 int		change_value(t_env *envir, char **var);
+
+bool	process_cmdline(void);
+void	init_signal_handler(void);
+void	reprompt(void);
+void	kill_shell(void);
 #endif
