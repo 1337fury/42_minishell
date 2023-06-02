@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:47:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/31 20:02:13 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:00:24 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	*allocate_memory(unsigned int size, t_address **addresses)
 	void		*ptr;
 	t_address	*node;
 
-	ptr = ft_malloc(size, NULL, ALLOC, NULL);
+	ptr = malloc(size);
 	if (ptr == NULL)
 		return (NULL);
 	node = create_node(ptr, size);
@@ -30,19 +30,20 @@ static void	*allocate_memory(unsigned int size, t_address **addresses)
 	return (ptr);
 }
 
+// MODIFIED
 static void	*free_memory(t_address **addresses)
 {
-	t_address	*t_node;
+	t_address	*suivant;
 
-	t_node = *addresses;
+	suivant = *addresses;
 	if (!*addresses)
 		return (NULL);
-	while (t_node->next)
+	while (*addresses != NULL)
 	{
-		t_node = t_node->next;
-		_destroy_node(t_node->prev);
+		suivant = suivant->next;
+		_destroy_node(*addresses);
+		*addresses = suivant;
 	}
-	_destroy_node(t_node);
 	*addresses = NULL;
 	return (NULL);
 }

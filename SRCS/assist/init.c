@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:47:43 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/31 18:29:56 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:37:37 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ char	**convert_env(t_general *g_master)
 		tmp_line = ft_strjoin(env->name, "=");
 		tmp_res = ft_strjoin(tmp_line, env->value);
 		result[i++] = ft_strdup(tmp_res);
-		free(tmp_line);
-		free(tmp_res);
+		// free(tmp_line);
+		// free(tmp_res);
 		env = env->next;
 	}
 	return (result);

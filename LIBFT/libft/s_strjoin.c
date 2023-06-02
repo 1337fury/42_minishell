@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_strjoin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:37:23 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 20:10:09 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:24:36 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*join_with_space(char *s1, char *s2)
 	ft_memcpy(res + s1_len, " ", 1);
 	ft_memcpy(res + s1_len + 1, s2, s2_len);
 	res[s1_len + 1 + s2_len] = '\0';
-	if (s1)
-		free(s1);
+	// if (s1)
+	// 	free(s1);
 	return (res);
 }

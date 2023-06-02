@@ -1,7 +1,5 @@
 NAME = libft.a
 
-FT_MALLOC = ft_malloc.a
-
 all : $(NAME)
 
 CC = cc
@@ -57,20 +55,16 @@ SRC =  \
 
 OBJECTS = $(SRC:.c=.o)
 
-import:
-	@cp -pr ../ft_malloc/ft_malloc.a ./ft_malloc.a
-
-$(NAME) : import $(OBJECTS)
+$(NAME) : $(OBJECTS)
 	@ar -rcs $(NAME) $(OBJECTS)
 
 %.o:%.c
-	@$(CC) $(CFLAGS) $(FT_MALLOC) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $<
 
 clean :
 	@rm -f $(OBJECTS)
 
 fclean : clean
-	@rm -f ft_malloc.a
 	@rm -f $(NAME)
 
 re : fclean all

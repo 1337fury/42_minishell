@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/27 13:09:25 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:25:56 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	close_fds(t_command *cmd, t_family *fam)
 		}
 		curr = curr->next;
 	}
-	free(fds);
+	// free(fds);
 	return (EXIT_SUCCESS);
 }
 

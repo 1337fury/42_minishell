@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 11:50:49 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:26:27 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_node	*basic_expander(t_list *lexer, t_node *curr)
     	       if (!curr->next->value)
     	            curr->next->value = ft_strdup("");
 	       }
-	       free(curr->value);
+	    //    free(curr->value);
     	   curr->value = ft_strjoin(curr->value, curr->next->value);
     	   destroy_node(lexer, curr->next);
 	   }

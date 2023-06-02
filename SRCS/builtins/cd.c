@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:06:32 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/31 20:07:02 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:25:19 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	update_last_pwd(t_env *env)
 	char	cwddir[PATH_MAX];
 
 	getcwd(cwddir, PATH_MAX);
-	free(get_env("PWD", env)->value);
+	// free(get_env("PWD", env)->value);
 	get_env("PWD", env)->value = ft_strdup(cwddir);
 }
 
@@ -50,8 +50,8 @@ void	find_and_insert_oldpwd(t_env *export, t_env *env, char *odir)
 	{
 		if (ft_strcmp(get_env("OLDPWD", env)->value, odir))
 		{
-			free(get_env("OLDPWD", env)->value);
-			free(get_env("OLDPWD", export)->value);
+			// free(get_env("OLDPWD", env)->value);
+			// free(get_env("OLDPWD", export)->value);
 			get_env("OLDPWD", env)->value = ft_strdup(odir);
 			get_env("OLDPWD", export)->value = ft_strdup(odir);
 		}

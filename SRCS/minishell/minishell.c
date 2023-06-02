@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 22:18:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 19:32:01 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:14:54 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,19 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
-	(void)line;
 	if (fry_init_all(envp, &lexer, &expander))
 		exit(1);
 	while (true)
 	{
 		line = readline(GREEN"fry@shell ~ :"WHITE);
+		if (!line)
+			break ;
 		lexer = fry_lexer(line);
 		expander = fry_expander(lexer);
 		executer(expander);
+		break ;
 	}
+	ft_malloc(0, NULL, FREE_ALL, NULL);
 	return (0);
 }
 // system("leaks -q minishell");

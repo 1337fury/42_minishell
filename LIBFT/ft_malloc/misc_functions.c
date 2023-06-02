@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   misc_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:54:30 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/26 14:48:08 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:54:54 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-void	destroy_node(t_address *node)
+void	_destroy_node(t_address *node)
 {
 	if (node == NULL)
 		return ;
 	if (node->ptr)
 	{
-		free (node->ptr);
+		// free (node->ptr);
 		node->dealloc = 1;
 		node->ptr = NULL;
 		node->size = 0;

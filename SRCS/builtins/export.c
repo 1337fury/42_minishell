@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:08:18 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/30 20:39:09 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:25:27 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	change_value(t_env *envir, char **var)
 	env = get_env(var[0], envir);
 	if (env)
 	{
-		if (env->value)
-			free(env->value);
+		// if (env->value)
+		// 	free(env->value);
 		env->value = ft_strdup(var[1]);
 		return (0);
 	}

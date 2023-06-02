@@ -6,8 +6,7 @@ CFLAFGS = -Wall -Wextra -Werror
 
 LIB = ./libft/libft.a
 
-M_LIB = ./ft_malloc/ft_malloc.a
-
+MALLOC = ./ft_malloc/ft_malloc.a
 
 INC = -I INCLUDES
 
@@ -33,11 +32,11 @@ OBJS = $(addprefix $(OBJS_PATH)/,$(OBJS_NAME))
 all : $(NAME)
 
 libftcomp :
-	@make -C ./ft_malloc
 	@make all -C ./libft
+	@make all -C ./ft_malloc
 
 $(NAME) : libftcomp $(OBJS) $(LIB) $(M_LIB)
-	@libtool -static -o $@ $(LIB) $(M_LIB) $(OBJS)
+	@libtool -static -o $@ $(LIB) $(MALLOC) $(OBJS)
 
 $(OBJS) : $(OBJS_PATH) $(SRCS)
 	@$(CC) $(CFLAFGS) $(INC) -c $(SRCS)

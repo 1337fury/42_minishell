@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 13:45:05 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/30 15:56:20 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:25:39 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	delete_variable(t_env *env, char *var)
 		else if (!ft_strcmp(found->name, var))
 		{
 			next = found->next;
-			free (found->name);
-			free (found->value);
-			free (found);
+			// free (found->name);
+			// free (found->value);
+			// free (found);
 			prev->next = next;
 			return ;
 		}

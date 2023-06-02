@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/26 20:23:45 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:26:32 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_node    *wildcard_handler(t_node *node)
                     matched_files = join_with_space(matched_files, curr_file->d_name);
     }
     closedir(folder);
-    free(node->value);
+    // free(node->value);
     node->value = matched_files;
     return (node->next);
 }
