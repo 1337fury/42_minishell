@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:31:31 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/02 19:00:50 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:18:29 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ extern t_general	g_gen;
 void	reprompt(void)
 {
 	ft_putchar_fd('\n', 1);
-	// rl_replace_line("", 0);
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
