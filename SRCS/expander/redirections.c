@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 16:18:44 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/03 20:14:42 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int    _expand(char *line, int fd)
+{
+	int i;
+	char    *e_var;
+
+	i = 0;
+	if (!line)
+		return (0);
+	while (line[i] && (line[i] == '_' || ft_isalnum(line[i])))
+		i++;
+	if (i > 0)
+		e_var = retrieve_env_var(ft_substr(line, 0, i));
+	else
+		e_var = ft_strdup("");
+	while (*e_var)
+		write(fd, &(*e_var++), 1);
+	return (i);
+}
+
+void    _write(int fd, char *line)
+{
+	int i;
+
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] == '$')
+		{
+			i++;
+			i += _expand(line + i, fd);
+		}
+		if (line[i] == '$')
+			continue ;
+		write(fd, &line[i], 1);
+		i++;
+	}
+}
 
 // Handles the heredoc functionality for a given node
 // Returns: The file descriptor of the read end of the pipe
@@ -29,8 +67,7 @@ int	herdoc_handler(t_node *curr)
 		line = readline("herdoc> ");
 		if (!line || !ft_strncmp(line, eof, ft_strlen(eof)))
 			break ;
-		// expand herdoc vars later
-		write(tab[1], line, ft_strlen(line));
+		_write(tab[1], line);
 		write(tab[1], "\n", 1);
 	}
 	close(tab[1]);
