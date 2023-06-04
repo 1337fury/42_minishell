@@ -56,6 +56,7 @@ typedef struct s_general
 	t_env				*ev;
 	t_env				*exp;
 	int					*c_procs;
+	bool				u_exec;
 	int					e_status;
 	struct sigaction	sa;
 }			t_general;
@@ -90,6 +91,7 @@ int		change_value(t_env *envir, char **var);
 
 bool	process_cmdline(void);
 void	init_signal_handler(void);
+void	init_sig_handler_child(void);
 void	reprompt(void);
 void	kill_shell(void);
 #endif

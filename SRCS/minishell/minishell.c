@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 22:18:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 12:34:48 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:22:58 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	fry_init_all(char **env, t_list **lexer, t_table **expander)
 	g_gen.ev = create_env(env);
 	g_gen.exp = create_env(env);
 	g_gen.e_status = 0;
+	g_gen.c_procs = NULL;
 	g_gen.line = NULL;
+	g_gen.u_exec = false;
 	*lexer = NULL;
 	*expander = NULL;
 	init_signal_handler();
@@ -54,4 +56,3 @@ int	main(int ac, char **av, char **envp)
 	}
 	return (0);
 }
-// system("leaks -q minishell");

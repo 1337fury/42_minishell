@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 18:06:11 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:15:26 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	_execve(t_command *cmd)
 	char	*cmd_e;
 	char	**result;
 
+	init_sig_handler_child();
 	if (check_builtin(cmd->data[0]))
 	{
 		exec_builtins(cmd, true);

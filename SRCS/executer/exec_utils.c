@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/01 16:26:00 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:23:33 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,11 @@ void	exec_family(t_family *family)
 		single_command(curr_cmd, child_pid);
 	if (sh_wait)
 	{
+		g_gen.u_exec = true;
 		inx_exit[0] = -1;
 		while (++inx_exit[0] < family->size)
 			waitpid(child_pid[inx_exit[0]], &inx_exit[1], 0);
 		g_gen.e_status = WEXITSTATUS(inx_exit[1]);
+		g_gen.u_exec = false;
 	}
-	// free(child_pid);
 }

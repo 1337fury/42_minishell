@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:31:31 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/04 12:19:20 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:13:38 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,17 @@ extern t_general	g_gen;
 void	reprompt(void)
 {
 	ft_putchar_fd('\n', 1);
-	rl_replace_line("", 0);
 	rl_on_new_line();
+	rl_replace_line("", 0);
 	rl_redisplay();
 }
-
-// bool	kill_children(void)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (g_gen.c_procs[i])
-// 	{
-// 		kill
-// 	}
-// }
 
 void	ctrl_handler(int sigint)
 {
 	if (sigint == SIGINT)
 	{
-		// kill_children();
-		reprompt();
+		if (!g_gen.u_exec)
+			reprompt();
 	}
 }
 
@@ -48,6 +37,14 @@ void	init_signal_handler(void)
 	g_gen.sa.sa_handler = ctrl_handler;
 	sigaction(SIGINT, &g_gen.sa, NULL);
 	signal(SIGQUIT, SIG_IGN);
+
+}
+
+void	init_sig_handler_child(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGTSTP, SIG_DFL);
 }
 
 void	kill_shell(void)

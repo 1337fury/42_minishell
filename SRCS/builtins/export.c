@@ -19,37 +19,31 @@ int	change_value(t_env *envir, char **var)
 	env = get_env(var[0], envir);
 	if (env)
 	{
-		// if (env->value)
-		// 	free(env->value);
 		env->value = ft_strdup(var[1]);
+		env->single = false;
 		return (0);
 	}
-	//free_2d_array(var);
 	return (1);
 }
 
 void	export_ex(t_general *g_master, char **parse, char *arg)
 {
 	if (get_env(parse[0], g_master->exp))
-	{
-		change_value(g_master->ev, parse);
 		change_value(g_master->exp, parse);
-	}
 	else
-	{
-		insert_to_env(g_master->ev, parse, arg);
 		insert_to_export(g_master->exp, parse, arg);
-	}
-	//free_2d_array(parse);
+
+	if (get_env(parse[0], g_master->ev))
+		change_value(g_master->ev, parse);
+	else
+		insert_to_env(g_master->ev, parse, arg);
 }
 
 void	export_ex2(t_general *g_master, char **parse, char *arg)
 {
 	if (!check_variable_validity(arg))
 	{
-		if (get_env(parse[0], g_master->exp))
-			change_value(g_master->exp, parse);
-		else
+		if (!get_env(parse[0], g_master->exp))
 			insert_to_export(g_master->exp, parse, arg);
 	}
 	else if (check_variable_validity(arg))
@@ -64,29 +58,21 @@ switch to the 2nd element
 */
 char	**export_split(char *arg)
 {
+	char	*eq;
 	char	**parse;
-	char	*first;
-	int		j;
-	int		f_el;
-	int		i;
 
-	i = -1;
-	f_el = -1;
-	first = ft_strchr(arg, '=');
+	eq = NULL;
+	if (ft_strchr(arg, '='))
+		eq = ft_strchr(arg, '=');
 	parse = ft_calloc(3, sizeof(char *));
-	if (!parse)
-		return (NULL);
-	while (++f_el <= 1)
+	if (eq)
 	{
-		j = 0;
-		parse[f_el] = ft_calloc(ft_strlen(arg), sizeof(char));
-		while (arg[++i])
-		{
-			if (&arg[i] == first)
-				break ;
-			parse[f_el][j++] = arg[i];
-		}
+		parse[0] = ft_substr(arg, 0, (eq - arg));
+		parse[1] = ft_substr(arg, ((eq + 1) - arg),
+				(ft_strlen(arg) - (eq - arg)));
 	}
+	else
+		parse[0] = ft_strdup(arg);
 	return (parse);
 }
 

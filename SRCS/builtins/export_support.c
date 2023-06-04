@@ -41,11 +41,8 @@ char	**parse_variable(char *arg)
 	result = export_split(arg);
 	while (result[0][++i])
 	{
-		if (!ft_isalnum(result[0][i]))
-		{
-			//free_2d_array(result);
+		if (arg[i] != '_' && !ft_isalnum(result[0][i]))
 			return (NULL);
-		}
 	}
 	return (result);
 }
