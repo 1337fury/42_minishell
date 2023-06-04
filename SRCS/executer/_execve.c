@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 18:56:17 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:06:11 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ char    *find_exec(char *cmd)
     return (NULL);
 }
 
+// scotch o sf
+void	repair(char **data)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (!ft_strcmp(data[i], "\x02"))
+				data[i] = ft_strdup("");
+		i++;
+	}
+}
+
 /*
 ** This function executes a command with the given arguments using the execve system call.
 ** It first calls the find_exec() function to locate the full path of the command.
@@ -85,6 +99,7 @@ void	_execve(t_command *cmd)
 		cmd_e = find_exec(cmd->data[0]);
 		if (!cmd_e)
 			exit (127);
+		repair(cmd->data);
 		execve(cmd_e, cmd->data, result);
 		ms_errors(cmd_e, strerror(errno));
 	}
