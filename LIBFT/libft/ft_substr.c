@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:32:49 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 20:05:22 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/04 11:02:48 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!sub)
 		return (NULL);
 	i = 0;
-	while (i < len && s[i])
+	while (i < len && s[start])
 	{
 		sub[i] = s[start];
 		i++;
