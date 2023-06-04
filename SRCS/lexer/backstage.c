@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/03 18:12:22 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:51:28 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	scan_token(t_list **lexer, char *cmd, t_scanner *point)
 		operator_handler(*lexer, point, cmd);
 	else
 		default_handler(*lexer, point, cmd);
-	//Not sure about that line
 	(*lexer)->size++;
 }
 
@@ -80,7 +79,6 @@ t_list	*get_token(char *cmd)
 		scan_token(&lexer, cmd, &point);
 	}
 	ft_lstadd_back(&(lexer->head), ft_lstnew(NULL, E_CMD));
-	//Not sure about that line
 	lexer->size += 2;
 	return (lexer);
 }

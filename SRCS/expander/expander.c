@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/29 11:32:51 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:13:30 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ t_table	*fry_expander(t_list *lexer)
 	    }
 	    else
 	        curr = curr->next;
-	}		
+	}
 	return (expander);
 }
