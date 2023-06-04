@@ -6,11 +6,90 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 16:18:44 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/03 15:51:58 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_general	g_gen;
+
+char	**expand_heredoc(const char *line)
+{
+	int		s;
+	int		e;
+	int		h;
+	char	**v_hold;
+
+	h = 0;
+	s = -1;
+	v_hold = ft_calloc(128, sizeof(char *));
+	while (line[++s])
+	{
+		e = 0;
+		if (line[s] == '$')
+		{
+			s++;
+			while (line[s + e] == '_' || ft_isalnum(line[s + e]))
+				e++;
+		}
+		if (e > 0)
+			v_hold[h++] = ft_substr(line, s, (e + s) - s);
+	}
+	return (v_hold);
+}
+
+void	*replace_word(char *line, char *word)
+{
+	char		*line_s;
+	t_env		*var;
+	int			i[3];
+	int			size;
+
+	ft_bzero(i, 3);
+	var = get_env(word, g_gen.exp);
+	size = ft_strlen(line);
+	if (var)
+		size += ft_strlen(var->value);
+	line_s = ft_calloc(size + 1, 1);
+	while (line[i[0]])
+	{
+		i[1] = 0;
+		if (line[i[0]] == '$')
+		{
+			if (var)
+				while (var->value[i[1]])
+					line_s[i[2]++] = var->value[i[1]++];
+			i[0] += ft_strlen(word) + 1;
+		}
+		else
+			line_s[i[2]++] = line[i[0]++];
+	}
+	return (line_s);
+}
+
+char	*expand_variables(char	*line)
+{
+	char	**v_hold;
+	char	*s_line;
+	int		i;
+
+	i = 0;
+	v_hold = expand_heredoc(line);
+	s_line = ft_strdup(line);
+	// while (v_hold[i])
+	// {
+	// 	printf("STASH %d: %s\n", i, v_hold[i]);
+	// 	i++;
+	// }
+	// i = 0;
+	while (v_hold[i])
+	{
+		s_line = replace_word(s_line, v_hold[i]);
+		i++;
+	}
+	return (line);
+}
 
 // Handles the heredoc functionality for a given node
 // Returns: The file descriptor of the read end of the pipe
@@ -29,7 +108,8 @@ int	herdoc_handler(t_node *curr)
 		line = readline("herdoc> ");
 		if (!line || !ft_strncmp(line, eof, ft_strlen(eof)))
 			break ;
-		// expand herdoc vars later
+		if (ft_strchr(line, '$'))
+			line = expand_variables(line);
 		write(tab[1], line, ft_strlen(line));
 		write(tab[1], "\n", 1);
 	}
