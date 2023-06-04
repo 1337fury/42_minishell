@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 16:18:58 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/04 12:07:27 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,18 @@
 # include "expander.h"
 # include "lexer.h"
 # include "libft.h"
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
 # include <dirent.h>
 # include <errno.h>
 # include <string.h>
 # include <limits.h>
-
-# define ERR_SQUOTE "unclosed single quotes"
-# define ERR_DQUOTE "unclosed double quotes"
 
 # define LEFT -1
 # define RIGHT -2
