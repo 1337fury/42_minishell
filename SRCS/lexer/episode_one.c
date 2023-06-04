@@ -6,14 +6,15 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 19:41:19 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/03 12:21:20 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Handles spaces in the given string, advancing the position until a newline or non-space character is encountered.
+ * Handles spaces in the given string, advancing the position until \
+ * a newline or non-space character is encountered.
  * If spaces were encountered, adds a new node with the SPACE type to the lexer list.
  */
 void	spaces_handler(t_list *lexer, int *current, char *cmd)
@@ -58,8 +59,10 @@ void	squote_handler(t_list *lexer, t_scanner *point, char *cmd)
 	point->current++;
 }
 /**
- * Handles dollar signs in the given string, extracting variable names and updating the lexer list accordingly.
- * If a valid variable name or special character sequence is found, it adds appropriate nodes to the lexer list.
+ * Handles dollar signs in the given string, extracting variable names \
+ * and updating the lexer list accordingly.
+ * If a valid variable name or special character sequence is found, it \
+ * adds appropriate nodes to the lexer list.
  * Also updates the current position.
  */
 void	dollar_handler(t_list *lexer, t_scanner *point, char *cmd)
@@ -89,3 +92,4 @@ void	dollar_handler(t_list *lexer, t_scanner *point, char *cmd)
 	else
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("$"), STR));
 }
+

@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/03 15:51:58 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/04 11:22:43 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,45 @@ char	*expand_variables(char	*line)
 	return (line);
 }
 
+int    _expand(char *line, int fd)
+{
+	int i;
+	char    *e_var;
+
+	(void)fd;
+	i = 0;
+	if (!line)
+		return (0);
+	while (line[i] && (line[i] == '_' || ft_isalnum(line[i])))
+		i++;
+	if (i > 0)
+		e_var = retrieve_env_var(ft_substr(line, 0, i));
+	else
+		e_var = ft_strdup("");
+	while (*e_var)
+		write(fd, &(*e_var++), 1);
+	return (i);
+}
+
+void    _write(int fd, char *line)
+{
+	int i;
+
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] == '$')
+		{
+			i++;
+			i += _expand(line + i, fd);
+		}
+		if (line[i] == '$')
+			continue ;
+		write(fd, &line[i], 1);
+		i++;
+	}
+}
+
 // Handles the heredoc functionality for a given node
 // Returns: The file descriptor of the read end of the pipe
 int	herdoc_handler(t_node *curr)
@@ -108,9 +147,10 @@ int	herdoc_handler(t_node *curr)
 		line = readline("herdoc> ");
 		if (!line || !ft_strncmp(line, eof, ft_strlen(eof)))
 			break ;
-		if (ft_strchr(line, '$'))
-			line = expand_variables(line);
-		write(tab[1], line, ft_strlen(line));
+		// if (ft_strchr(line, '$'))
+		// 	line = expand_variables(line);
+		// write(tab[1], line, ft_strlen(line));
+		_write(tab[1], line);
 		write(tab[1], "\n", 1);
 	}
 	close(tab[1]);
