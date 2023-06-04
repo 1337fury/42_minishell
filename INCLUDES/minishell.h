@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 16:18:58 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/04 11:41:03 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_general
 	char				*line;
 	t_env				*ev;
 	t_env				*exp;
+	int					*c_procs;
 	int					e_status;
 	struct sigaction	sa;
 }			t_general;

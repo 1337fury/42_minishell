@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_cmdline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:31:31 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/03 20:18:29 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 11:45:51 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@ void	reprompt(void)
 	rl_redisplay();
 }
 
+bool	kill_children(void)
+{
+	int	i;
+
+	i = 0;
+	while (g_gen.c_procs[i])
+	{
+		kill
+	}
+}
+
 void	ctrl_handler(int sigint)
 {
 	if (sigint == SIGINT)
 	{
-		//kill_children();
+		kill_children();
 		reprompt();
 	}
 }
