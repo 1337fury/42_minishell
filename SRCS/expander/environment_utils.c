@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/03 11:53:26 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 11:31:36 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	fry_compare(char *var, char *target)
 	key = ft_substr(var, 0, eq_len);
 	if (!key)
 		return (false);
-	result = ft_strncmp(key, target, ft_strlen(target));
-	return (/*free(key), */result);
+	result = ft_strcmp(key, target);
+	return (result);
 }
 
 /*
