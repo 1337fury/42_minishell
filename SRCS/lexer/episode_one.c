@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/03 12:21:20 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:54:53 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	spaces_handler(t_list *lexer, int *current, char *cmd)
 	t_bit	enter;
 
 	enter.is = 0;
-	while (cmd && cmd[*current] != N_LINE && is_space(cmd[*current]))
+	while (cmd && is_space(cmd[*current]))
 	{
 		enter.is = 1;
 		(*current)++;
@@ -44,7 +44,7 @@ void	squote_handler(t_list *lexer, t_scanner *point, char *cmd)
 	enter.is = 0;
 	ft_lstadd_back(&(lexer->head), ft_lstnew(ft_strdup("\'"), SQUOTE));
 	point->current++;
-	while (cmd[point->current] && cmd[point->current] != '\'' && cmd[point->current] != N_LINE)
+	while (cmd[point->current] && cmd[point->current] != '\'')
 	{
 		enter.is = 1;
 		point->current++;
@@ -54,6 +54,8 @@ void	squote_handler(t_list *lexer, t_scanner *point, char *cmd)
 		value = ft_substr(cmd, point->start, point->current - point->start);
 		ft_lstadd_back(&(lexer->head), ft_lstnew(value, STR));
 	}
+	else
+		ft_lstadd_back(&(lexer->head), ft_lstnew(ft_strdup("\x02"), STR));
 	if (cmd[point->current] == '\'')
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\'"), SQUOTE));
 	point->current++;
