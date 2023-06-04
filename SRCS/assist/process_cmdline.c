@@ -22,28 +22,10 @@ void	reprompt(void)
 	rl_redisplay();
 }
 
-bool	kill_children(void)
-{
-	int	i;
-
-	i = 0;
-	if (!g_gen.c_procs || !g_gen.c_procs[0])
-		return (false);
-	while (g_gen.c_procs[i])
-	{
-		kill(g_gen.c_procs[i], SIGTERM);
-		i++;
-	}
-	ft_malloc(0, g_gen.c_procs, FREE, 0);
-	g_gen.c_procs = NULL;
-	return (true);
-}
-
 void	ctrl_handler(int sigint)
 {
 	if (sigint == SIGINT)
 	{
-		kill_children();
 		if (!g_gen.u_exec)
 			reprompt();
 	}
@@ -55,6 +37,14 @@ void	init_signal_handler(void)
 	g_gen.sa.sa_handler = ctrl_handler;
 	sigaction(SIGINT, &g_gen.sa, NULL);
 	signal(SIGQUIT, SIG_IGN);
+
+}
+
+void	init_sig_handler_child(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGTSTP, SIG_DFL);
 }
 
 void	kill_shell(void)

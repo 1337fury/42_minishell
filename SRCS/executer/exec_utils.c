@@ -157,5 +157,4 @@ void	exec_family(t_family *family)
 		g_gen.e_status = WEXITSTATUS(inx_exit[1]);
 		g_gen.u_exec = false;
 	}
-	// free(child_pid);
 }

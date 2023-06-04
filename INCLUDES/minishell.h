@@ -92,6 +92,7 @@ int		change_value(t_env *envir, char **var);
 
 bool	process_cmdline(void);
 void	init_signal_handler(void);
+void	init_sig_handler_child(void);
 void	reprompt(void);
 void	kill_shell(void);
 #endif

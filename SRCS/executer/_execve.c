@@ -74,6 +74,7 @@ void	_execve(t_command *cmd)
 	char	*cmd_e;
 	char	**result;
 
+	init_sig_handler_child();
 	if (check_builtin(cmd->data[0]))
 	{
 		exec_builtins(cmd, true);

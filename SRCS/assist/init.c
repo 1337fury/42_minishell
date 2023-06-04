@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	**convert_env(t_general *g_master)
+char	**convert_env(t_general *g_gen)
 {
 	int		i;
 	char	**result;
@@ -21,11 +21,11 @@ char	**convert_env(t_general *g_master)
 	t_env	*env;
 
 	i = 0;
-	env = g_master->ev;
+	env = g_gen->ev;
 	result = ft_calloc((calc_len(env) + 1), sizeof(char *));
 	if (!result)
 		return (NULL);
-	while (env->next)
+	while (env)
 	{
 		tmp_line = ft_strjoin(env->name, "=");
 		tmp_res = ft_strjoin(tmp_line, env->value);
