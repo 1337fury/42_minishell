@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/03 20:14:42 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:06:27 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void    _write(int fd, char *line)
 			i++;
 			i += _expand(line + i, fd);
 		}
-		if (line[i] == '$')
-			continue ;
-		write(fd, &line[i], 1);
-		i++;
+		else
+		{
+			write(fd, &line[i], 1);
+			i++;
+		}
 	}
 }
 
@@ -65,7 +66,7 @@ int	herdoc_handler(t_node *curr)
 	while (true)
 	{
 		line = readline("herdoc> ");
-		if (!line || !ft_strncmp(line, eof, ft_strlen(eof)))
+		if (!line || !ft_strcmp(line, eof))
 			break ;
 		_write(tab[1], line);
 		write(tab[1], "\n", 1);
