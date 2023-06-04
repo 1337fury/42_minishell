@@ -57,6 +57,7 @@ typedef struct s_general
 	t_env				*ev;
 	t_env				*exp;
 	int					*c_procs;
+	bool				u_exec;
 	int					e_status;
 	struct sigaction	sa;
 }			t_general;

@@ -150,10 +150,12 @@ void	exec_family(t_family *family)
 		single_command(curr_cmd, child_pid);
 	if (sh_wait)
 	{
+		g_gen.u_exec = true;
 		inx_exit[0] = -1;
 		while (++inx_exit[0] < family->size)
 			waitpid(child_pid[inx_exit[0]], &inx_exit[1], 0);
 		g_gen.e_status = WEXITSTATUS(inx_exit[1]);
+		g_gen.u_exec = false;
 	}
 	// free(child_pid);
 }

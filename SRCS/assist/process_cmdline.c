@@ -17,8 +17,8 @@ extern t_general	g_gen;
 void	reprompt(void)
 {
 	ft_putchar_fd('\n', 1);
-	rl_replace_line("", 0);
 	rl_on_new_line();
+	rl_replace_line("", 0);
 	rl_redisplay();
 }
 
@@ -27,10 +27,16 @@ bool	kill_children(void)
 	int	i;
 
 	i = 0;
+	if (!g_gen.c_procs || !g_gen.c_procs[0])
+		return (false);
 	while (g_gen.c_procs[i])
 	{
-		kill
+		kill(g_gen.c_procs[i], SIGTERM);
+		i++;
 	}
+	ft_malloc(0, g_gen.c_procs, FREE, 0);
+	g_gen.c_procs = NULL;
+	return (true);
 }
 
 void	ctrl_handler(int sigint)
@@ -38,7 +44,8 @@ void	ctrl_handler(int sigint)
 	if (sigint == SIGINT)
 	{
 		kill_children();
-		reprompt();
+		if (!g_gen.u_exec)
+			reprompt();
 	}
 }
 
