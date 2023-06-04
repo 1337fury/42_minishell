@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 12:07:27 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:16:03 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_general
 	char				*line;
 	t_env				*ev;
 	t_env				*exp;
+	int					*c_procs;
 	int					e_status;
 	struct sigaction	sa;
 }			t_general;

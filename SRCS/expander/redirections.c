@@ -6,17 +6,20 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 12:06:27 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:15:42 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_general	g_gen;
 
 int    _expand(char *line, int fd)
 {
 	int i;
 	char    *e_var;
 
+	(void)fd;
 	i = 0;
 	if (!line)
 		return (0);
