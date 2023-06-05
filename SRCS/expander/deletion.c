@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 19:49:58 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:23:02 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ t_node	*retrieve_node(t_node *curr, int direction)
 		return (NULL);
 	if (direction == LEFT)
 	{
-		while (curr && curr->type == SPACE)
+		while (curr && curr->type == W_SPC)
 			curr = curr->prev;
 	}
 	else if (direction == RIGHT)
 	{
-		while (curr && curr->type == SPACE)
+		while (curr && curr->type == W_SPC)
 			curr = curr->next;
 	}
 	return (curr);
@@ -42,6 +42,25 @@ void	destroy_node(t_list *lexer, t_node *node)
 	s_prev->next = s_next;
 	s_next->prev = s_prev;
 	lexer->size--;
+}
+
+void	remove_empty(t_list *lexer)
+{
+	t_node	*curr;
+	t_node	*temp;
+
+	curr = lexer->head;
+	while (curr->type != E_CMD)
+	{
+		if (curr->type == EMPTY && (!(curr->prev->type % 2) || !(curr->next->type % 2)))
+		{
+			temp = curr->next;
+			destroy_node(lexer, curr);
+			curr = temp;
+			continue ;
+		}
+		curr = curr->next;
+	}
 }
 
 // removes double quotes, single quotes, left parentheses, and right parentheses from the lexer
