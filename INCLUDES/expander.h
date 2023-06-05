@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:46:59 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/03 12:16:39 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/05 12:24:37 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_table
 t_table		*fry_expander(t_list *lexer);
 void		create_table(t_table **table);
 void		remove_dquote(t_list *lexer);
+void		remove_empty(t_list *lexer);
 void		table_add_back(t_table **expander, t_row *new_row);
 t_row		*build_command(t_node **node);
 t_row		*create_row(int type);

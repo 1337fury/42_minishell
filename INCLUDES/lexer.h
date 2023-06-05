@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 20:19:38 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 19:47:54 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:11:11 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_bit
 //  None of these are divisible by 2, 3, 5, 7
 # define S_CMD 1
 # define E_CMD 11
-# define SPACE 13
+# define W_SPC 13
 # define SQUOTE 17
 # define DQUOTE 19
 
@@ -47,6 +47,7 @@ typedef struct s_bit
 # define STR 2
 # define VAR 4
 # define WILD 8
+# define EMPTY 10
 
 typedef struct s_scanner
 {
