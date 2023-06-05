@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 16:13:30 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:36:23 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*update_lexer(t_list *lexer)
 	{
 		if (curr->type == STR || curr->type == VAR)
 			curr = basic_expander(lexer, curr);
-		if (curr->type == SPACE)
+		if (curr->type == W_SPC)
 		{
 			next = curr->next;
 			destroy_node(lexer, curr);
@@ -57,6 +57,7 @@ t_table	*fry_expander(t_list *lexer)
 	if (!expander)
 		return (NULL);
 	remove_dquote(lexer);
+	remove_empty(lexer);
 	lexer = update_lexer(lexer);
 	curr = lexer->head;
 	if (!curr || curr->type == E_CMD)
