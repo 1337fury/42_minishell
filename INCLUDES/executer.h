@@ -26,5 +26,6 @@ int		dup_close(int oldf, int newf, bool is_last);
 void	_execve(t_command *cmd);
 void	exec_builtins(t_command *cmd, bool pipe);
 bool	check_builtin(char *data);
+void	wait_for_children(bool s_w, int *i_e, t_family *f, int *c_p);
 
 #endif

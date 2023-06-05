@@ -12,7 +12,8 @@
 
 #include "minishell.h"
 
-//retrieves the nearest non-space node in a given direction (left or right) from a starting node in 'lexer'
+//retrieves the nearest non-space node in a given direction
+//(left or right) from a starting node in 'lexer'
 t_node	*retrieve_node(t_node *curr, int direction)
 {
 	if (!curr)
@@ -30,7 +31,8 @@ t_node	*retrieve_node(t_node *curr, int direction)
 	return (curr);
 }
 
-// removes a node from a command lexer and adjusts the linked list pointers accordingly
+// removes a node from a command lexer and adjusts
+//the linked list pointers accordingly
 void	destroy_node(t_list *lexer, t_node *node)
 {
 	t_node	*s_prev;
@@ -44,7 +46,8 @@ void	destroy_node(t_list *lexer, t_node *node)
 	lexer->size--;
 }
 
-// removes double quotes, single quotes, left parentheses, and right parentheses from the lexer
+// removes double quotes, single quotes, left parentheses
+// and right parentheses from the lexer
 void	remove_dquote(t_list *lexer)
 {
 	t_node	*curr;
@@ -53,7 +56,7 @@ void	remove_dquote(t_list *lexer)
 	curr = lexer->head;
 	while (curr->type != E_CMD)
 	{
-		if (curr->type == DQUOTE || curr->type == SQUOTE 
+		if (curr->type == DQUOTE || curr->type == SQUOTE
 			|| curr->type == LEFT_PAR || curr->type == RIGHT_PAR)
 		{
 			temp = curr->next;

@@ -16,16 +16,17 @@
  * Performs lexical analysis on the given command string.
  * Checks if the command string is empty and adds it to the command history.
  * Retrieves the tokens from the command string using the `get_token` function.
- * Checks if the lexer list is clean, ensuring proper closure of parentheses and other tokens.
+ * Checks if the lexer list is clean, ensuring proper closure of
+ * parentheses and other tokens.
  * Returns the lexer list if it is clean, or NULL otherwise.
  * Prints an error message if unclosed parentheses are detected.
  */
-t_list *fry_lexer(char *cmd)
+t_list	*fry_lexer(char *cmd)
 {
 	t_list	*list;
-	
+
 	if (!is_empty(cmd))
-			add_history(cmd);
+		add_history(cmd);
 	list = get_token(cmd);
 	if (!list)
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   episode_one.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 16:54:53 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:20:13 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Handles spaces in the given string, advancing the position until \
  * a newline or non-space character is encountered.
- * If spaces were encountered, adds a new node with the SPACE type to the lexer list.
+ * If spaces were encountered, adds a new node with the SPACE type to the lexer.
  */
 void	spaces_handler(t_list *lexer, int *current, char *cmd)
 {
@@ -32,7 +32,8 @@ void	spaces_handler(t_list *lexer, int *current, char *cmd)
 }
 
 /**
- * Handles single quotes in the given string, updating the lexer list accordingly.
+ * Handles single quotes in the given string,
+ * updating the lexer list accordingly.
  * If a single quote is found, it adds appropriate nodes to the lexer list.
  * Also checks for errors and updates the current position.
  */
@@ -60,6 +61,7 @@ void	squote_handler(t_list *lexer, t_scanner *point, char *cmd)
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\'"), SQUOTE));
 	point->current++;
 }
+
 /**
  * Handles dollar signs in the given string, extracting variable names \
  * and updating the lexer list accordingly.
@@ -80,7 +82,9 @@ void	dollar_handler(t_list *lexer, t_scanner *point, char *cmd)
 		return ;
 	}
 	enter.is = 0;
-	while (cmd[point->current + 1] && (cmd[point->current + 1] == '_' || ft_isalnum(cmd[point->current + 1])))
+	while (cmd[point->current + 1]
+	&& (cmd[point->current + 1] == '_'
+			|| ft_isalnum(cmd[point->current + 1])))
 	{
 		enter.is = 1;
 		point->current++;
@@ -94,4 +98,3 @@ void	dollar_handler(t_list *lexer, t_scanner *point, char *cmd)
 	else
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("$"), STR));
 }
-

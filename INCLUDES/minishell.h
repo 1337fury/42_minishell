@@ -38,6 +38,8 @@
 # define GREEN "\033[0;32m"
 # define WHITE "\033[0;37m"
 
+# define N_FILE "No such file or directory"
+
 /*
 	- `Global RULES`
 */
@@ -63,7 +65,7 @@ typedef struct s_general
 
 t_general	g_gen;
 
-void	ms_errors(char *part, char *usage);
+int		ms_errors(char *part, char *usage);
 int		calc_len(t_env *env);
 char	**convert_env(t_general *g_master);
 int		print_env(t_env *exp);
@@ -78,7 +80,7 @@ void	_env(t_general *g_master);
 void	_exit_shell(t_general *g_master, char **arg);
 int		_export(t_general *g_master, char **arg);
 void	_pwd(t_general *g_master);
-void	_unset(t_general *g_master, char **var);
+int		_unset(t_general *g_master, char **var);
 t_env	*get_env(const char *name, t_env *env);
 char	**parse_variable(char *arg);
 int		check_variable_validity(char *arg);

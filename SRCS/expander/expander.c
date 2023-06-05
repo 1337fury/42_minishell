@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 16:13:30 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:14:48 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Updates the lexer by expanding variables, removing spaces, and handling wildcards
+// Updates the lexer by expanding variables
+// removing spaces, and handling wildcards
 t_list	*update_lexer(t_list *lexer)
 {
 	t_node	*curr;
@@ -45,6 +46,7 @@ t_list	*update_lexer(t_list *lexer)
 	}
 	return (lexer);
 }
+
 // Expands and processes the lexer to create a table of commands
 t_table	*fry_expander(t_list *lexer)
 {
@@ -63,16 +65,16 @@ t_table	*fry_expander(t_list *lexer)
 		return (NULL);
 	while (curr->type != E_CMD)
 	{
-	    if (!(curr->type % 3) || !(curr->type % 2) || curr->type == PIPE)
-	        table_add_back(&expander, build_command(&curr));
-	    else if (curr->type == AND || curr->type == OR)
-	    {
+		if (!(curr->type % 3) || !(curr->type % 2) || curr->type == PIPE)
+			table_add_back(&expander, build_command(&curr));
+		else if (curr->type == AND || curr->type == OR)
+		{
 			table_add_back(&expander, create_row((curr->type == AND) * \
 				AND + (curr->type == OR) * OR));
 			curr = curr->next;
-	    }
-	    else
-	        curr = curr->next;
+		}
+		else
+			curr = curr->next;
 	}
 	return (expander);
 }

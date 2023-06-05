@@ -11,13 +11,8 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-// /usr/bin/sort | /bin/cat | /usr/bin/grep Makefile
 
-// void	exec_comp(t_row *row)
-// {
-// 	printf("ROW IS LOGICAL\n");
-// 	exit (0);
-// }
+extern t_general	g_gen;
 
 void	_scan_table(t_row **curr)
 {
@@ -42,4 +37,17 @@ int	executer(t_table *table)
 	while (curr)
 		_scan_table(&curr);
 	return (EXIT_SUCCESS);
+}
+
+void	wait_for_children(bool s_w, int *i_e, t_family *f, int *c_p)
+{
+	if (s_w)
+	{
+		g_gen.u_exec = true;
+		i_e[0] = -1;
+		while (++i_e[0] < f->size)
+			waitpid(c_p[i_e[0]], &i_e[1], 0);
+		g_gen.e_status = WEXITSTATUS(i_e[1]);
+		g_gen.u_exec = false;
+	}
 }

@@ -13,7 +13,8 @@
 #include "minishell.h"
 
 /**
- * Checks if there is a pipe command (|) in the command sequence starting from the current command (curr).
+ * Checks if there is a pipe command (|) in the command sequence starting from
+ * the current command (curr).
  * Returns true if a pipe command is found, and false otherwise.
 */
 int	check_pipe(t_command *curr)

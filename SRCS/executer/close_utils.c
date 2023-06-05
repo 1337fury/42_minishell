@@ -13,8 +13,10 @@
 #include "minishell.h"
 
 /**
- * Sets up the file descriptors for input and output redirection of the current command.
- * Returns an array of two integers, where the first element is the input file descriptor
+ * Sets up the file descriptors for input and output redirection of the current
+ * command.
+ * Returns an array of two integers, where the first element is the
+ * input file descriptor
  * and the second element is the output file descriptor.
  * If the allocation fails, it returns NULL.
  */
@@ -22,7 +24,7 @@ int	*setup_redirection(t_command *cmd, int size)
 {
 	int	*fds;
 
-	fds = ft_calloc(2, sizeof(int));	
+	fds = ft_calloc(2, sizeof(int));
 	if (!fds)
 		return (NULL);
 	if (cmd->pos == 0)
@@ -69,7 +71,6 @@ int	close_fds(t_command *cmd, t_family *fam)
 		}
 		curr = curr->next;
 	}
-	// free(fds);
 	return (EXIT_SUCCESS);
 }
 

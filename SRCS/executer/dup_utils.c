@@ -39,12 +39,17 @@ int	dup_close(int oldf, int newf, bool is_last)
 }
 
 /**
- * Duplicates the input and output file descriptors for the first command in the pipeline.
- * If the command's input file descriptor is not 0 (stdin), duplicates the command's own input file descriptor to stdin.
- * If the command's output file descriptor is 1 (stdout), duplicates the output file descriptor from the next command's file descriptor array.
+ * Duplicates the input and output file descriptors for the first command
+ * in the pipeline.
+ * If the command's input file descriptor is not 0 (stdin), duplicates
+ * the command's own input file descriptor to stdin.
+ * If the command's output file descriptor is 1 (stdout), duplicates the
+ * output file descriptor from the next command's file descriptor array.
  * Otherwise, uses the command's own output file descriptor.
- * If the input file descriptor was duplicated, returns the result of the duplication and closure operation for the input file descriptor.
- * Otherwise, returns the result of the duplication and closure operation for the output file descriptor.
+ * If the input file descriptor was duplicated, returns the result of
+ * the duplication and closure operation for the input file descriptor.
+ * Otherwise, returns the result of the duplication and closure operation for
+ * the output file descriptor.
  */
 
 int	_dup_first(t_command *cmd)
@@ -67,11 +72,15 @@ int	_dup_first(t_command *cmd)
 }
 
 /**
- * Duplicates the input and output file descriptors for the last command in the pipeline.
- * If the command's input file descriptor is 0 (stdin), duplicates the input file descriptor from the previous command's file descriptor array.
- * If the command's output file descriptor is not 1 (stdout), duplicates the command's own output file descriptor.
+ * Duplicates the input and output file descriptors for the last command
+ * in the pipeline.
+ * If the command's input file descriptor is 0 (stdin), duplicates the input
+ *  file descriptor from the previous command's file descriptor array.
+ * If the command's output file descriptor is not 1 (stdout), duplicates the
+ * command's own output file descriptor.
  * Otherwise, uses the default stdout file descriptor.
- * Returns the result of the duplication and closure operations for both file descriptors.
+ * Returns the result of the duplication and closure operations for both
+ * file descriptors.
  */
 int	_dup_last(t_command *cmd)
 {
@@ -89,11 +98,15 @@ int	_dup_last(t_command *cmd)
 }
 
 /**
- * Duplicates the input and output file descriptors for a command in the middle of the pipeline.
- * If the command's input file descriptor is 0 (stdin), duplicates the input file descriptor from the previous command's file descriptor array.
- * If the command's output file descriptor is 1 (stdout), duplicates the output file descriptor from the next command's file descriptor array.
+ * Duplicates the input and output file descriptors for a command in
+ * the middle of the pipeline.
+ * If the command's input file descriptor is 0 (stdin), duplicates the input
+ * file descriptor from the previous command's file descriptor array.
+ * If the command's output file descriptor is 1 (stdout), duplicates the output
+ * file descriptor from the next command's file descriptor array.
  * Otherwise, duplicates the command's own input and output file descriptors.
- * Returns the result of the duplication and closure operations for both file descriptors.
+ * Returns the result of the duplication and closure operations for both
+ * file descriptors.
  */
 int	_dup_middle(t_command *cmd)
 {
@@ -112,11 +125,16 @@ int	_dup_middle(t_command *cmd)
 }
 
 /**
- * Sets up input/output redirection for a command based on its file descriptors and position in the pipeline.
- * If the command's input or output file descriptor is invalid, returns -1 and displays an error message.
- * If the command is the first in the pipeline, duplicates the first file descriptor.
- * If the command is in the middle of the pipeline, duplicates both input and output file descriptors.
- * If the command is the last in the pipeline, duplicates the last file descriptor.
+ * Sets up input/output redirection for a command based on its file descriptors
+ * and position in the pipeline.
+ * If the command's input or output file descriptor is invalid, returns -1
+ * and displays an error message.
+ * If the command is the first in the pipeline, duplicates the first
+ * file descriptor.
+ * If the command is in the middle of the pipeline, duplicates both input and
+ * output file descriptors.
+ * If the command is the last in the pipeline, duplicates the last
+ * file descriptor.
  * Returns EXIT_SUCCESS upon successful setup of input/output redirection.
  */
 int	setup_outin(t_command *cmd, int size)

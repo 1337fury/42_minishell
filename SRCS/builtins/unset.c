@@ -12,40 +12,32 @@
 
 #include "minishell.h"
 
-static void	delete_variable(t_env *env, char *var)
+static void	delete_variable(t_env **env, char *var)
 {
 	t_env	*found;
-	t_env	*prev;
-	t_env	*next;
 
-	found = env;
-	prev = NULL;
-	next = NULL;
-	while (found->next)
+	found = get_env(var, *env);
+	if (found)
 	{
-		if (!ft_strcmp(found->next->name, var))
-			prev = found;
-		else if (!ft_strcmp(found->name, var))
+		if (found->prev)
+			found->prev->next = found->next;
+		else
 		{
-			next = found->next;
-			// free (found->name);
-			// free (found->value);
-			// free (found);
-			prev->next = next;
-			return ;
+			*env = found->next;
+			found->next->prev = NULL;
 		}
-		found = found->next;
 	}
 }
 
-void	print_unset_error(char *var)
+int	print_unset_error(char *var)
 {
 	ft_putstr_fd("unset: `", 2);
 	ft_putstr_fd(var, 2);
 	ft_putstr_fd("': not valid identifier \n", 2);
+	return (1);
 }
 
-void	_unset(t_general *g_master, char **var)
+int	_unset(t_general *g_master, char **var)
 {
 	int	i;
 	int	j;
@@ -53,24 +45,15 @@ void	_unset(t_general *g_master, char **var)
 	i = -1;
 	while (var[++i])
 	{
-		if (!ft_isalpha(var[i][0]))
-		{
-			print_unset_error(var[i]);
-			builtins_exit(g_master, 1);
-			return ;
-		}
-		j = -1;
+		if (var[i][0] != '_' && !ft_isalpha(var[i][0]))
+			return (builtins_exit(g_master, print_unset_error(var[i])));
+		j = 0;
 		while (var[i][++j])
-		{
-			if (!ft_isalnum(var[i][j]))
-			{
-				print_unset_error(var[i]);
-				builtins_exit(g_master, 1);
-				return ;
-			}
-		}
-		delete_variable(g_master->ev, var[i]);
-		delete_variable(g_master->exp, var[i]);
+			if (!ft_isalnum(var[i][j]) && var[i][j] != '_')
+				return (builtins_exit(g_master, print_unset_error(var[i])));
+		delete_variable(&g_master->ev, var[i]);
+		delete_variable(&g_master->exp, var[i]);
 		builtins_exit(g_master, 0);
 	}
+	return (0);
 }

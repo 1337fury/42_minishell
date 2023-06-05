@@ -31,7 +31,8 @@ static char	*ft_alloc_result(const char *s1, char *res, int start, int end)
 	int	i;
 
 	i = 0;
-	res = (char *)malloc(sizeof(char) * (end - start + 1) + 1);
+	res = (char *)ft_malloc(sizeof(char) * (end - start + 1) + 1,
+			NULL, ALLOC, NULL);
 	if (!res)
 		return (NULL);
 	while (s1[start] && start <= end)

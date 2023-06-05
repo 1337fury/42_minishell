@@ -14,7 +14,7 @@
 
 extern t_general	g_gen;
 
-int    _expand(char *line, int fd)
+int	_expand(char *line, int fd)
 {
 	int		i;
 	char	*e_var;
@@ -27,7 +27,7 @@ int    _expand(char *line, int fd)
 		i++;
 	if (i > 0)
 	{
-		e_var = get_env_value(ft_substr(line, 0, i), g_gen.exp); /*retrieve_env_var(ft_substr(line, 0, i));*/
+		e_var = get_env_value(ft_substr(line, 0, i), g_gen.exp);
 		if (!e_var)
 			e_var = ft_strdup("");
 	}
@@ -38,12 +38,12 @@ int    _expand(char *line, int fd)
 	return (i);
 }
 
-void    _write(int fd, char *line)
+void	_write(int fd, char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
 		if (line[i] == '$')
 		{
