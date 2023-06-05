@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+extern t_general	g_gen;
+
 /*
 ** This function searches for a command in the directories listed in the PATH environment variable.
 ** It returns the full path of the command if found, or returns NULL if the command is not found.
@@ -25,16 +27,14 @@ char	*_pathchr(char *cmd)
 
 	if (!*cmd)
 		return (NULL);
-	path = retrieve_env_var("PATH");
+	path = get_env_value("PATH", g_gen.ev); /*retrieve_env_var("PATH")*/
 	paths = ft_split(path, ':');
-	// free(path);
 	cmd_tmp = ft_strjoin("/", cmd);
 	while (*paths)
 	{
 		*paths = ft_strjoin(*paths, cmd_tmp);
 		if (!access(*paths, F_OK))
 			return (*paths);
-		// free(*paths);
 		paths++;
 	}
 	// free(cmd_tmp);

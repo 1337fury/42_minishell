@@ -13,6 +13,8 @@
 
 #include "minishell.h"
 
+extern t_general g_gen;
+
 // Expands variables and concatenates adjacent string nodes into a single node
 t_node	*basic_expander(t_list *lexer, t_node *curr)
 {
@@ -22,7 +24,7 @@ t_node	*basic_expander(t_list *lexer, t_node *curr)
 			return (curr->type = STR, curr);
 		else
 		{
-			curr->value = retrieve_env_var(curr->value + 1);
+			curr->value = get_env_value(curr->value + 1, g_gen.exp); /*retrieve_env_var(curr->value + 1);*/
     	    if (!curr->value)
     	        curr->value = ft_strdup("");
 		}
@@ -39,7 +41,7 @@ t_node	*basic_expander(t_list *lexer, t_node *curr)
 			/*retrieve node*/
 	       if (retrieve_node(curr->prev, LEFT)->type != HERDOC)
 	       {
-    	       curr->next->value = retrieve_env_var(curr->next->value + 1);
+    	       curr->next->value = get_env_value(curr->next->value + 1, g_gen.exp); /*retrieve_env_var(curr->next->value + 1);*/
     	       if (!curr->next->value)
     	            curr->next->value = ft_strdup("");
 	       }

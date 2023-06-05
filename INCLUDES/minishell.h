@@ -94,4 +94,5 @@ void	init_signal_handler(void);
 void	init_sig_handler_child(void);
 void	reprompt(void);
 void	kill_shell(void);
+char	*get_env_value(char *name, t_env *env);
 #endif

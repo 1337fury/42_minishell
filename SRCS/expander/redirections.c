@@ -16,8 +16,8 @@ extern t_general	g_gen;
 
 int    _expand(char *line, int fd)
 {
-	int i;
-	char    *e_var;
+	int		i;
+	char	*e_var;
 
 	(void)fd;
 	i = 0;
@@ -26,7 +26,11 @@ int    _expand(char *line, int fd)
 	while (line[i] && (line[i] == '_' || ft_isalnum(line[i])))
 		i++;
 	if (i > 0)
-		e_var = retrieve_env_var(ft_substr(line, 0, i));
+	{
+		e_var = get_env_value(ft_substr(line, 0, i), g_gen.exp); /*retrieve_env_var(ft_substr(line, 0, i));*/
+		if (!e_var)
+			e_var = ft_strdup("");
+	}
 	else
 		e_var = ft_strdup("");
 	while (*e_var)

@@ -23,3 +23,15 @@ int	builtins_exit(t_general *g_master, int status)
 	g_master->e_status = status;
 	return (status);
 }
+
+char	*get_env_value(char *name, t_env *env)
+{
+	t_env	*found;
+
+	found = get_env(name, env);
+	if (found)
+		return (found->value);
+	else
+		return (NULL);
+	return (NULL);
+}
