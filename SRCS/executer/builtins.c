@@ -19,7 +19,7 @@ int	_redirector_builtins(t_command *cmd, int *fd)
 	if (cmd->in == -1 || cmd->out == -1)
 	{
 		builtins_exit(&g_gen, 1);
-		return (/*ms_errors("open", "no such file or directory !"),*/ 1);
+		return (ms_errors("open", "no such file or directory !"), 1);
 	}
 	if (cmd->out != 1)
 	{

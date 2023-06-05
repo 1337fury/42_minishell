@@ -13,8 +13,10 @@
 #include "minishell.h"
 
 /**
- * Handles double quotes in the given string, extracting variable names and updating the lexer list accordingly.
- * If a valid variable name is found, it invokes the `dollar_handler` function to handle it.
+ * Handles double quotes in the given string, extracting variable names and
+ * updating the lexer list accordingly.
+ * If a valid variable name is found, it invokes the `dollar_handler`
+ * function to handle it.
  * Also checks for errors and updates the current position.
  */
 void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
@@ -35,7 +37,8 @@ void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
 			if (word.is)
 			{
 				point_stop = point->current - point->start;
-				ft_lstadd_back(&lexer->head, ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
+				ft_lstadd_back(&lexer->head,
+					ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
 				point->start = point->current;
 			}
 			dollar_handler(lexer, point, cmd);
@@ -50,16 +53,20 @@ void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
 	}
 	point_stop = point->current - point->start;
 	if (word.is)
-		ft_lstadd_back(&lexer->head, ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
+		ft_lstadd_back(&lexer->head,
+			ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
 	if (empty.is)
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\x02"), EMPTY));
 	if (cmd[point->current] == '"')
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\""), DQUOTE));
 	point->current++;
 }
+
 /**
- * Handles parentheses in the given string, determining whether it is a left parenthesis or a right parenthesis.
- * Creates a new node in the lexer list with the appropriate type based on the encountered parenthesis.
+ * Handles parentheses in the given string, determining whether it is a
+ * left parenthesis or a right parenthesis.
+ * Creates a new node in the lexer list with the appropriate type based on
+ * the encountered parenthesis.
  * Also updates the current position.
  */
 void	par_handler(t_list *lexer, t_scanner *point, char *cmd)

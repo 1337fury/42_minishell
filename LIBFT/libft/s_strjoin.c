@@ -35,7 +35,5 @@ char	*join_with_space(char *s1, char *s2)
 	ft_memcpy(res + s1_len, " ", 1);
 	ft_memcpy(res + s1_len + 1, s2, s2_len);
 	res[s1_len + 1 + s2_len] = '\0';
-	// if (s1)
-	// 	free(s1);
 	return (res);
 }

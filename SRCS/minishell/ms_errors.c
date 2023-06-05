@@ -12,11 +12,12 @@
 
 #include "minishell.h"
 
-void	ms_errors(char *part, char *usage)
+int	ms_errors(char *part, char *usage)
 {
 	ft_putstr_fd(part, 2);
 	ft_putstr_fd(" : ", 2);
 	if (usage != NULL)
 		ft_putstr_fd(usage, 2);
 	write(2, "\n", 1);
+	return (1);
 }

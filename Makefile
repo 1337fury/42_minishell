@@ -8,7 +8,7 @@ LIB_A               = libftprintf.a
 
 ASSIST_SRC_LIST		= helper.c init.c process_cmdline.c
 BUILTINS_SRC_LIST	= cd.c echo.c env.c exit.c export.c export_support.c pwd.c unset.c
-LEXER_SRC_LIST      = lexer.c backstage.c episode_one.c episode_two.c episode_three.c last_episode.c
+LEXER_SRC_LIST      = lexer.c backstage.c episode_one.c episode_two.c episode_three.c episode_four.c last_episode.c
 EXPANDER_SRC_LIST   = expander.c build_cmd.c creators.c deletion.c environment_utils.c expansion.c \
 					list_operations.c pattern_matching.c redirections.c
 EXECUTER_SRC_LIST   = executer.c exec_utils.c dup_utils.c close_utils.c checkers.c builtins.c _execve.c

@@ -37,7 +37,6 @@ void	init_signal_handler(void)
 	g_gen.sa.sa_handler = ctrl_handler;
 	sigaction(SIGINT, &g_gen.sa, NULL);
 	signal(SIGQUIT, SIG_IGN);
-
 }
 
 void	init_sig_handler_child(void)

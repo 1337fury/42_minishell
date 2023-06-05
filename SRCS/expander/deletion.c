@@ -6,13 +6,14 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 15:23:02 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:41:58 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//retrieves the nearest non-space node in a given direction (left or right) from a starting node in 'lexer'
+//retrieves the nearest non-space node in a given direction
+//(left or right) from a starting node in 'lexer'
 t_node	*retrieve_node(t_node *curr, int direction)
 {
 	if (!curr)
@@ -30,7 +31,8 @@ t_node	*retrieve_node(t_node *curr, int direction)
 	return (curr);
 }
 
-// removes a node from a command lexer and adjusts the linked list pointers accordingly
+// removes a node from a command lexer and adjusts
+//the linked list pointers accordingly
 void	destroy_node(t_list *lexer, t_node *node)
 {
 	t_node	*s_prev;
@@ -72,7 +74,7 @@ void	remove_dquote(t_list *lexer)
 	curr = lexer->head;
 	while (curr->type != E_CMD)
 	{
-		if (curr->type == DQUOTE || curr->type == SQUOTE 
+		if (curr->type == DQUOTE || curr->type == SQUOTE
 			|| curr->type == LEFT_PAR || curr->type == RIGHT_PAR)
 		{
 			temp = curr->next;

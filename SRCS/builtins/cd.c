@@ -35,7 +35,6 @@ void	update_last_pwd(t_env *env)
 	char	cwddir[PATH_MAX];
 
 	getcwd(cwddir, PATH_MAX);
-	// free(get_env("PWD", env)->value);
 	get_env("PWD", env)->value = ft_strdup(cwddir);
 }
 
@@ -50,8 +49,6 @@ void	find_and_insert_oldpwd(t_env *export, t_env *env, char *odir)
 	{
 		if (ft_strcmp(get_env("OLDPWD", env)->value, odir))
 		{
-			// free(get_env("OLDPWD", env)->value);
-			// free(get_env("OLDPWD", export)->value);
 			get_env("OLDPWD", env)->value = ft_strdup(odir);
 			get_env("OLDPWD", export)->value = ft_strdup(odir);
 		}
@@ -76,18 +73,18 @@ int	_change_dir(t_general *g_master, char *arg)
 	if (!arg)
 	{
 		if (chdir(home->value) == -1)
-			return (builtins_exit(g_master, 1 /*p_error()*/));
+			return (builtins_exit(g_master, ms_errors("cd", N_FILE)));
 	}
 	else if ((arg[0] == '~' && arg[1] == '/') || (arg[0] == '~' && !arg[1]))
 	{
 		dir = "/";
 		dir = ft_strjoin(home->value, arg + 1);
 		if (chdir(dir) == -1)
-			return (builtins_exit (g_master, 1/*p_error()*/));
+			return (builtins_exit (g_master, ms_errors("cd", N_FILE)));
 	}
 	else
 		if (chdir(arg) == -1)
-			return (builtins_exit (g_master, 1/*p_error()*/));
+			return (builtins_exit (g_master, ms_errors("cd", N_FILE)));
 	update_pwd(g_master, old_dir);
 	return (builtins_exit(g_master, 0));
 }

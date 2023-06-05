@@ -32,7 +32,6 @@ void	export_ex(t_general *g_master, char **parse, char *arg)
 		change_value(g_master->exp, parse);
 	else
 		insert_to_export(g_master->exp, parse, arg);
-
 	if (get_env(parse[0], g_master->ev))
 		change_value(g_master->ev, parse);
 	else

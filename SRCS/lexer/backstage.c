@@ -12,21 +12,25 @@
 
 #include "minishell.h"
 
-// Checks if the current position has reached or exceeded the end of the given string.
+// Checks if the current position has reached
+// or exceeded the end of the given string.
 bool	is_at_end(int *current, char *cmd)
 {
-		return ((size_t)*current >= ft_strlen(cmd));
+	return ((size_t) * current >= ft_strlen(cmd));
 }
 
-// Retrieves the character at the current position in the given string and advances the position.
+// Retrieves the character at the current position
+// in the given string and advances the position.
 char	advance(char *cmd, int *current)
 {
 	return (cmd[*current++]);
 }
 
 /**
- * Scans and processes a single token in the given string, updating the lexer list accordingly.
- * Determines the type of token based on the encountered character and invokes the corresponding handler function.
+ * Scans and processes a single token in the given string
+ * updating the lexer list accordingly.
+ * Determines the type of token based on the encountered character and invokes
+ * the corresponding handler function.
  * Also updates the current position and lexer size.
  */
 void	scan_token(t_list **lexer, char *cmd, t_scanner *point)
@@ -58,8 +62,10 @@ void	scan_token(t_list **lexer, char *cmd, t_scanner *point)
 }
 
 /**
- * Retrieves tokens from the given command string and builds a lexer list containing the tokens.
- * It scans the command string character by character, invoking the appropriate token scanning functions.
+ * Retrieves tokens from the given command string and builds a lexer list
+ * containing the tokens.
+ * It scans the command string character by character, invoking the
+ * appropriate token scanning functions.
  * Returns the lexer list containing the tokens.
  */
 t_list	*get_token(char *cmd)

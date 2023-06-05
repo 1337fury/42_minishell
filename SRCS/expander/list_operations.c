@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 // Adds a new row to the end of the table
-void	 table_add_back(t_table **expander, t_row *new_row)
+void	table_add_back(t_table **expander, t_row *new_row)
 {
 	if (!expander || !new_row)
 		return ;
@@ -27,6 +27,7 @@ void	 table_add_back(t_table **expander, t_row *new_row)
 	(*expander)->head = new_row;
 	(*expander)->tail = new_row;
 }
+
 // Adds a new command to the end of the family
 void	family_add_back(t_family **family, t_command *new_cmd)
 {
@@ -35,10 +36,10 @@ void	family_add_back(t_family **family, t_command *new_cmd)
 		new_cmd->prev = (*family)->tail;
 		(*family)->tail->next = new_cmd;
 		(*family)->tail = new_cmd;
-		(*family)->size +=1;
+		(*family)->size += 1;
 		return ;
 	}
 	(*family)->head = new_cmd;
 	(*family)->tail = new_cmd;
-	(*family)->size +=1;
+	(*family)->size += 1;
 }

@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:11:01 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/05/30 13:13:37 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:33:45 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*get_env_value(char *name, t_env *env)
 {
 	t_env	*found;
 
+	if (ft_strchr(name, '?'))
+		return (ft_itoa(g_gen.e_status));
 	found = get_env(name, env);
 	if (found)
 		return (found->value);
