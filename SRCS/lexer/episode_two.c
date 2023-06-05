@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 16:12:39 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 11:55:58 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
 	if (word.is)
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
 	if (empty.is)
-		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\x02"), STR));
+		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\x02"), EMPTY));
 	if (cmd[point->current] == '"')
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\""), DQUOTE));
 	point->current++;

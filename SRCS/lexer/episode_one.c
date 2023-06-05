@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 16:54:53 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:11:05 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Handles spaces in the given string, advancing the position until \
  * a newline or non-space character is encountered.
- * If spaces were encountered, adds a new node with the SPACE type to the lexer list.
+ * If spaces were encountered, adds a new node with the W_SPC type to the lexer list.
  */
 void	spaces_handler(t_list *lexer, int *current, char *cmd)
 {
@@ -28,7 +28,7 @@ void	spaces_handler(t_list *lexer, int *current, char *cmd)
 		(*current)++;
 	}
 	if (enter.is)
-		ft_lstadd_back(&(lexer->head), ft_lstnew(NULL, SPACE));
+		ft_lstadd_back(&(lexer->head), ft_lstnew(NULL, W_SPC));
 }
 
 /**
@@ -55,7 +55,7 @@ void	squote_handler(t_list *lexer, t_scanner *point, char *cmd)
 		ft_lstadd_back(&(lexer->head), ft_lstnew(value, STR));
 	}
 	else
-		ft_lstadd_back(&(lexer->head), ft_lstnew(ft_strdup("\x02"), STR));
+		ft_lstadd_back(&(lexer->head), ft_lstnew(ft_strdup("\x02"), EMPTY));
 	if (cmd[point->current] == '\'')
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\'"), SQUOTE));
 	point->current++;
