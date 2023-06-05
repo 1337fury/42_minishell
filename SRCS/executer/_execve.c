@@ -72,7 +72,7 @@ void	repair(char **data)
 	while (data[i])
 	{
 		if (!ft_strcmp(data[i], "\x02"))
-				data[i] = ft_strdup("");
+			data[i] = ft_strdup("");
 		i++;
 	}
 }
