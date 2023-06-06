@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 18:15:26 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:08:42 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*_pathchr(char *cmd)
 
 	if (!*cmd)
 		return (NULL);
-	path = get_env_value("PATH", g_gen.ev);
+	path = get_env_value("PATH", g_gen.ev, false);
 	if (!path)
 		path = ft_strdup("");
 	paths = ft_split(path, ':');
@@ -58,13 +58,13 @@ NULL.
 char	*find_exec(char *cmd)
 {
 	if (!cmd)
-		return (ms_errors(cmd, "command not found"), NULL);
+		return (ms_errors(cmd, NOT_F), NULL);
 	if (ft_strchr(cmd, '/'))
 	{
 		if (!access(cmd, F_OK))
 			return (cmd);
 		else if (access(cmd, F_OK) == -1)
-			return (ms_errors(cmd, "No such file or directory"), NULL);
+			return (ms_errors(cmd, N_FILE), NULL);
 	}
 	else if (!ft_strchr(cmd, '/'))
 		return (_pathchr(cmd));
