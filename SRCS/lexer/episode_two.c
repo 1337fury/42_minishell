@@ -6,11 +6,37 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 11:55:58 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:50:00 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	handler(t_bit *word, t_list *lexer, t_scanner *point, char *cmd)
+{
+	int		point_stop;
+	t_bit	empty;
+
+	empty.is = false;
+	if (cmd[point->current] == '$')
+	{
+		if (word->is)
+		{
+			point_stop = point->current - point->start;
+			ft_lstadd_back(&lexer->head,
+				ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
+			point->start = point->current;
+		}
+		dollar_handler(lexer, point, cmd);
+		point->start = point->current;
+		word->is = 0;
+	}
+	else
+	{
+		word->is = 1;
+		point->current++;
+	}
+}
 
 /**
  * Handles double quotes in the given string, extracting variable names and
@@ -27,30 +53,10 @@ void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
 
 	ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\""), DQUOTE));
 	point->current++;
-	empty.is = 1;
+	empty.is = true;
 	word.is = 0;
 	while (cmd[point->current] && cmd[point->current] != '\"')
-	{
-		empty.is = 0;
-		if (cmd[point->current] == '$')
-		{
-			if (word.is)
-			{
-				point_stop = point->current - point->start;
-				ft_lstadd_back(&lexer->head,
-					ft_lstnew(ft_substr(cmd, point->start, point_stop), STR));
-				point->start = point->current;
-			}
-			dollar_handler(lexer, point, cmd);
-			point->start = point->current;
-			word.is = 0;
-		}
-		else
-		{
-			word.is = 1;
-			point->current++;
-		}
-	}
+		handler(&word, lexer, point, cmd);
 	point_stop = point->current - point->start;
 	if (word.is)
 		ft_lstadd_back(&lexer->head,

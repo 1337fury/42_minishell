@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 15:45:59 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:37:46 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,8 @@ void	dollar_handler(t_list *lexer, t_scanner *point, char *cmd)
 		return ;
 	}
 	enter.is = 0;
-	while (cmd[point->current + 1]
-	&& (cmd[point->current + 1] == '_'
-			|| ft_isalnum(cmd[point->current + 1])))
+	while (cmd[point->current + 1] && (cmd[point->current + 1] == '_'\
+		|| ft_isalnum(cmd[point->current + 1])))
 	{
 		enter.is = 1;
 		point->current++;

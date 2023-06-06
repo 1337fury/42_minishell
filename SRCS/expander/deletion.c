@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 15:41:58 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:33:04 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	remove_empty(t_list *lexer)
 	curr = lexer->head;
 	while (curr->type != E_CMD)
 	{
-		if (curr->type == EMPTY && (!(curr->prev->type % 2) || !(curr->next->type % 2)))
+		if (curr->type == EMPTY && (!(curr->prev->type % 2) \
+			|| !(curr->next->type % 2)))
 		{
 			temp = curr->next;
 			destroy_node(lexer, curr);
@@ -65,7 +66,8 @@ void	remove_empty(t_list *lexer)
 	}
 }
 
-// removes double quotes, single quotes, left parentheses, and right parentheses from the lexer
+// removes double quotes, single quotes, left parentheses,
+// and right parentheses from the lexer
 void	remove_dquote(t_list *lexer)
 {
 	t_node	*curr;

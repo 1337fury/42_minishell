@@ -6,11 +6,24 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 09:43:05 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:20:40 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// FOR THE NORM
+t_node	*handle_wild(t_node *curr)
+{
+	if (curr->prev && !(curr->prev->type % 3))
+	{
+		curr->type = WILD;
+		curr = curr->next;
+	}
+	else
+		curr = wildcard_handler(curr);
+	return (curr);
+}
 
 // Updates the lexer by expanding variables
 // removing spaces, and handling wildcards
@@ -32,19 +45,25 @@ t_list	*update_lexer(t_list *lexer)
 			continue ;
 		}
 		if (curr->type == WILD)
-		{
-			if (curr->prev && !(curr->prev->type % 3))
-			{
-				curr->type = WILD;
-				curr = curr->next;
-			}
-			else
-				curr = wildcard_handler(curr);
-		}
+			handle_wild(curr);
 		else
 			curr = curr->next;
 	}
 	return (lexer);
+}
+
+// FOR THE NORM
+int	get_started(t_list **lexer, t_table **expander)
+{
+	if (!lexer)
+		return (EXIT_FAILURE);
+	create_table(expander);
+	if (!expander)
+		return (EXIT_FAILURE);
+	remove_dquote(*lexer);
+	remove_empty(*lexer);
+	*lexer = update_lexer(*lexer);
+	return (EXIT_SUCCESS);
 }
 
 // Expands and processes the lexer to create a table of commands
@@ -53,14 +72,8 @@ t_table	*fry_expander(t_list *lexer)
 	t_table	*expander;
 	t_node	*curr;
 
-	if (!lexer)
+	if (get_started(&lexer, &expander))
 		return (NULL);
-	create_table(&expander);
-	if (!expander)
-		return (NULL);
-	remove_dquote(lexer);
-	remove_empty(lexer);
-	lexer = update_lexer(lexer);
 	curr = lexer->head;
 	if (!curr || curr->type == E_CMD)
 		return (NULL);

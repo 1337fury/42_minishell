@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 16:13:11 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:13:25 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	_init(char **joined, t_command **cmd, int pos)
 {
 	(*joined) = "";
-(*cmd) = create_t_command(EXECUTED_CMD);
+	(*cmd) = create_t_command(EXECUTED_CMD);
 	(*cmd)->pos = pos;
 }
 

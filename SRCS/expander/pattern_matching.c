@@ -6,20 +6,14 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 15:44:26 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:36:07 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Checks if a string matches a pattern
-bool	is_match(char *string, char *pattern)
+bool	start_check(char *string, char *pattern, char *star, char *s_p)
 {
-	char	*star;
-	char	*s_p;
-
-	star = NULL;
-	s_p = string;
 	while (*string)
 	{
 		if ((*pattern == '?') || (*pattern == *string))
@@ -42,6 +36,19 @@ bool	is_match(char *string, char *pattern)
 		}
 		return (false);
 	}
+	return (true);
+}
+
+// Checks if a string matches a pattern
+bool	is_match(char *string, char *pattern)
+{
+	char	*star;
+	char	*s_p;
+
+	star = NULL;
+	s_p = string;
+	if (!start_check(string, pattern, star, s_p))
+		return (false);
 	while (*pattern == '*')
 		pattern++;
 	return (!(*pattern));
