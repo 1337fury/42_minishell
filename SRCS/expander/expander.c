@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 13:01:52 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:50:48 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ t_list	*update_lexer(t_list *lexer)
 // FOR THE NORM
 int	get_started(t_list **lexer, t_table **expander)
 {
-	if (!lexer)
+	if (!*lexer)
 		return (EXIT_FAILURE);
 	create_table(expander);
-	if (!expander)
+	if (!*expander)
 		return (EXIT_FAILURE);
 	remove_dquote(*lexer);
 	remove_empty(*lexer);
