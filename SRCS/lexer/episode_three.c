@@ -6,16 +6,33 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 11:43:15 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:08:53 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_op(char *c, t_list *lexer, t_scanner *point)
+// FOR THE NORM
+void	_else(t_list *lexer, t_scanner *point, char *c)
 {
-	int	type;
+	ft_lstadd_back(&lexer->head, ft_lstnew(fry_char_to_str(c[0]), STR));
+	point->current++;
+}
 
+/**
+ * Handles operators in the given string, including logical operators
+ * (|| and &&),
+ * redirection operators (>>, <<), and single character operators (|, >, <).
+ * Adds appropriate nodes to the lexer list based on the encountered operator.
+ * Also updates the current position.
+ */
+void	operator_handler(t_list *lexer, t_scanner *point, char *cmd)
+{
+	char	c[2];
+	int		type;
+
+	c[0] = cmd[point->current];
+	c[1] = cmd[point->current + 1];
 	if (c[0] == '|' && c[1] == '|')
 		ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("||"), OR));
 	else if (c[0] == '>' && c[1] == '>')
@@ -33,27 +50,7 @@ void	check_op(char *c, t_list *lexer, t_scanner *point)
 		return ;
 	}
 	else
-	{
-		ft_lstadd_back(&lexer->head, ft_lstnew(fry_char_to_str(c[0]), STR));
-		point->current++;
-		return ;
-	}
-}
-
-/**
- * Handles operators in the given string, including logical operators
- * (|| and &&),
- * redirection operators (>>, <<), and single character operators (|, >, <).
- * Adds appropriate nodes to the lexer list based on the encountered operator.
- * Also updates the current position.
- */
-void	operator_handler(t_list *lexer, t_scanner *point, char *cmd)
-{
-	char	c[2];
-
-	c[0] = cmd[point->current];
-	c[1] = cmd[point->current + 1];
-	check_op(c, lexer, point);
+		return (_else(lexer, point, c));
 	point->current += 2;
 }
 
@@ -82,5 +79,5 @@ void	default_handler(t_list *lexer, t_scanner *point, char *cmd)
 	if (wildcard)
 		ft_lstadd_back(&lexer->head, ft_lstnew(value, WILD));
 	else
-		ft_lstadd_back(&lexer->head, ft_lstnew(value, STR));
+		ft_lstadd_back(&lexer->head, ft_lstnew(value ,STR));
 }
