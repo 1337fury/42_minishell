@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 13:08:53 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 13:34:09 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	default_handler(t_list *lexer, t_scanner *point, char *cmd)
 	if (wildcard)
 		ft_lstadd_back(&lexer->head, ft_lstnew(value, WILD));
 	else
-		ft_lstadd_back(&lexer->head, ft_lstnew(value ,STR));
+		ft_lstadd_back(&lexer->head, ft_lstnew(value, STR));
 }
