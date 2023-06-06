@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 12:15:42 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:00:18 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	_expand(char *line, int fd)
 		i++;
 	if (i > 0)
 	{
-		e_var = get_env_value(ft_substr(line, 0, i), g_gen.exp);
+		e_var = get_env_value(ft_substr(line, 0, i), g_gen.exp, true);
 		if (!e_var)
 			e_var = ft_strdup("");
 	}
@@ -76,8 +76,10 @@ int	herdoc_handler(t_node *curr)
 		if (!line || !ft_strcmp(line, eof))
 			break ;
 		_write(tab[1], line);
+		free(line);
 		write(tab[1], "\n", 1);
 	}
+	free(line);
 	close(tab[1]);
 	return (tab[0]);
 }
