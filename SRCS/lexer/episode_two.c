@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:31 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 11:50:00 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:12:15 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	handler(t_bit *word, t_list *lexer, t_scanner *point, char *cmd)
 		}
 		dollar_handler(lexer, point, cmd);
 		point->start = point->current;
-		word->is = 0;
+		word->is = false;
 	}
 	else
 	{
-		word->is = 1;
+		word->is = true;
 		point->current++;
 	}
 }
@@ -54,7 +54,7 @@ void	dquote_handler(t_list *lexer, t_scanner *point, char *cmd)
 	ft_lstadd_back(&lexer->head, ft_lstnew(ft_strdup("\""), DQUOTE));
 	point->current++;
 	empty.is = true;
-	word.is = 0;
+	word.is = false;
 	while (cmd[point->current] && cmd[point->current] != '\"')
 		handler(&word, lexer, point, cmd);
 	point_stop = point->current - point->start;
