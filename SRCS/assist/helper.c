@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:11:01 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/06 16:56:48 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:16:34 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*x_join(char **tab)
 		_x = ft_strjoin(_x, tab[i]);
 		_x = ft_strjoin(_x, "\x01");
 	}
-	return (_x);
+	return (ft_strtrim(_x, "\x01"));
 }
 
 char	*get_env_value(char *name, t_env *env, int herdoc)
