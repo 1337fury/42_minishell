@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 20:29:27 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:55:32 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	expnad_join(t_list *lexer, t_node *curr)
 			if (retrieve_node(curr->prev, LEFT)->type != HERDOC)
 			{
 				curr->next->value
-					= get_env_value(curr->next->value + 1, g_gen.exp);
+					= get_env_value(curr->next->value + 1, g_gen.exp, false);
 				if (!curr->next->value)
 					curr->next->value = ft_strdup("");
 			}
@@ -48,7 +48,7 @@ t_node	*basic_expander(t_list *lexer, t_node *curr)
 			return (curr->type = STR, curr);
 		else
 		{
-			curr->value = get_env_value(curr->value + 1, g_gen.exp);
+			curr->value = get_env_value(curr->value + 1, g_gen.exp, false);
 			if (!curr->value)
 				curr->value = ft_strdup("");
 		}
