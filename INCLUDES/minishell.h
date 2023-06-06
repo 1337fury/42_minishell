@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/05 15:48:08 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:52:16 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,5 @@ void	init_signal_handler(void);
 void	init_sig_handler_child(void);
 void	reprompt(void);
 void	kill_shell(void);
-char	*get_env_value(char *name, t_env *env);
+char	*get_env_value(char *name, t_env *env, int type);
 #endif
