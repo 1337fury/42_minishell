@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:11:01 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/05 15:33:45 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/06 16:56:48 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,38 @@ int	builtins_exit(t_general *g_master, int status)
 	return (status);
 }
 
-char	*get_env_value(char *name, t_env *env)
+char	*x_join(char **tab)
+{
+	int		i;
+	char	*_x;
+
+	i = -1;
+	_x = "";
+	while (tab[++i])
+	{
+		_x = ft_strjoin(_x, tab[i]);
+		_x = ft_strjoin(_x, "\x01");
+	}
+	return (_x);
+}
+
+char	*get_env_value(char *name, t_env *env, int herdoc)
 {
 	t_env	*found;
+	char	**split;
 
 	if (ft_strchr(name, '?'))
 		return (ft_itoa(g_gen.e_status));
 	found = get_env(name, env);
 	if (found)
+	{
+		if (!herdoc)
+		{
+			split = ft_split(found->value, ' ');
+			return (x_join(split));
+		}
 		return (found->value);
+	}
 	else
 		return (NULL);
 	return (NULL);
