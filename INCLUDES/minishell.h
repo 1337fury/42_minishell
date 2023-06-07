@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/06/06 17:08:35 by abdeel-o         ###   ########.fr       */
+=======
+/*   Updated: 2023/06/07 10:51:33 by hmeftah          ###   ########.fr       */
+>>>>>>> 0a861dd59a9d39c3d176cfbad0ab2909f53cc108
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +46,7 @@
 # define SYNTAX_ERROR "syntax error near unexpected token"
 # define NOT_F "command not found"
 
+# define NOT_F "command not found"
 /*
 	- `Global RULES`
 */
