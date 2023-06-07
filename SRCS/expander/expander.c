@@ -6,23 +6,23 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 13:50:48 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/07 11:34:29 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // FOR THE NORM
-t_node	*handle_wild(t_node *curr)
+t_node	*handle_wild(t_node **curr)
 {
-	if (curr->prev && !(curr->prev->type % 3))
+	if ((*curr)->prev && !((*curr)->prev->type % 3))
 	{
-		curr->type = WILD;
-		curr = curr->next;
+		(*curr)->type = WILD;
+		(*curr) = (*curr)->next;
 	}
 	else
-		curr = wildcard_handler(curr);
-	return (curr);
+		(*curr) = wildcard_handler((*curr));
+	return ((*curr));
 }
 
 // Updates the lexer by expanding variables
@@ -45,7 +45,7 @@ t_list	*update_lexer(t_list *lexer)
 			continue ;
 		}
 		if (curr->type == WILD)
-			handle_wild(curr);
+			handle_wild(&curr);
 		else
 			curr = curr->next;
 	}
