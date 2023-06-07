@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 18:07:56 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/07 07:34:49 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ NULL.
 char	*find_exec(char *cmd)
 {
 	if (!cmd)
-		return (ms_errors(cmd, NOT_F), NULL);
+		return (NULL);
 	if (ft_strchr(cmd, '/'))
 	{
 		if (!access(cmd, F_OK))
@@ -71,7 +71,6 @@ char	*find_exec(char *cmd)
 	return (NULL);
 }
 
-// scotch o sf
 void	repair(char **data)
 {
 	int	i;
