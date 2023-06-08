@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:47:43 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/07 07:55:58 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/07 11:12:36 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**convert_env(t_general *g_gen)
 
 	i = 0;
 	env = g_gen->ev;
-	result = ft_calloc((calc_len(env) + 1), sizeof(char *));
+	result = ft_calloc((calc_len(env) + 2), sizeof(char *));
 	if (!result)
 		return (NULL);
 	while (env)

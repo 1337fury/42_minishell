@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 16:55:32 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/07 14:52:58 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_general	g_gen;
 
-void	expnad_join(t_list *lexer, t_node *curr)
+void	expand_join(t_list *lexer, t_node *curr)
 {
 	while (curr && curr->next
 		&& (curr->next->type == STR || curr->next->type == VAR))
@@ -53,6 +53,6 @@ t_node	*basic_expander(t_list *lexer, t_node *curr)
 				curr->value = ft_strdup("");
 		}
 	}
-	expnad_join(lexer, curr);
+	expand_join(lexer, curr);
 	return (curr);
 }

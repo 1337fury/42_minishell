@@ -6,11 +6,17 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 16:03:38 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 17:15:21 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:24:20 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	p_error(void)
+{
+	perror(strerror(errno));
+	return (1);
+}
 
 int	ms_errors(char *part, char *usage)
 {

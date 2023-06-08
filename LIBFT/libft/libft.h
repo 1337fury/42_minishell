@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:26:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/06 14:00:03 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:22:58 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ft_lstadd_back(t_node **lst, t_node *new);
 void	ft_lstdelone(t_node *lst);
 void	ft_lstclear(t_node **lst);
 int		ft_strcmp(const char *s1, const char *s2);
+int		_strlen(char *s, char c);
 
 #endif

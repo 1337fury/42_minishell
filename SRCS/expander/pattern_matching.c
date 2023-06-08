@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/07 19:51:38 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:20:30 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ bool	start_check(char **string, char **pattern, char *star, char *s_p)
 	return (true);
 }
 
-bool    is_match(char *string, char *pattern)
+bool	is_match(char *string, char *pattern)
 {
-	char    *star;
-    char    *s_p;
+	char	*star;
+	char	*s_p;
 
-    star = NULL;
-    s_p = string;
-    if (!start_check(&string, &pattern, star, s_p))
+	star = NULL;
+	s_p = string;
+	if (!start_check(&string, &pattern, star, s_p))
 		return (false);
-    while (*pattern == '*')
-        pattern++;
-    return (!(*pattern));
+	while (*pattern == '*')
+		pattern++;
+	return (!(*pattern));
 }
 
 // Handles wildcard matching for a given node
