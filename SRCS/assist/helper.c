@@ -6,48 +6,11 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:11:01 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/07 19:24:59 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:30:40 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	p_error(void)
-{
-	perror(strerror(errno));
-	return (1);
-}
-
-int	builtins_exit(t_general *g_master, int status)
-{
-	g_master->e_status = status;
-	return (status);
-}
-
-char	*x_join(char **tab)
-{
-	int		i;
-	char	*_x;
-
-	i = -1;
-	_x = "";
-	while (tab[++i])
-	{
-		_x = ft_strjoin(_x, tab[i]);
-		_x = ft_strjoin(_x, "\x01");
-	}
-	return (ft_strtrim(_x, "\x01"));
-}
-
-int _strlen(char *s, char c)
-{
-	int	l;
-
-	l = 0;
-	while (s[l] && s[l] != c)
-		l++;
-	return (l);
-}
 
 void	_retrieve(char **exp, char *v)
 {
@@ -93,11 +56,11 @@ char	*get_env_value(char *name, t_env *env, int herdoc)
 	if (found)
 	{
 		if (ft_strchr(found->value, '*') && !herdoc)
-		 	return (expand_wild(found->value));
+			return (expand_wild(found->value));
 		if (!herdoc)
 		{
 			split = ft_split(found->value, ' ');
-		 	return (x_join(split));
+			return (x_join(split));
 		}
 		else
 			return (found->value);
@@ -106,7 +69,6 @@ char	*get_env_value(char *name, t_env *env, int herdoc)
 		return (NULL);
 	return (NULL);
 }
-
 
 //export A="*a"
 //echo $A
