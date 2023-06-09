@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:47:43 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/07 11:12:36 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:57:40 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ t_env	*create_env(char **envp)
 	int		i;
 
 	i = 0;
-	head = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
+	head = (t_env *)ft_calloc(sizeof(t_env), 1);
 	head->prev = NULL;
 	temp = head;
 	while (envp[i + 1])
 	{
 		prev = temp;
 		temp->single = false;
-		temp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
+		temp->next = (t_env *)ft_calloc(sizeof(t_env), 1);
 		temp = temp->next;
 		temp->prev = prev;
 		i++;

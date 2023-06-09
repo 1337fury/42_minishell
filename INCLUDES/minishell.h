@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/09 15:16:07 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/09 16:33:11 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define GREEN "\033[0;32m"
 # define WHITE "\033[0;37m"
 
-# define N_FILE "No such file or directory"
+# define N_FILE "Invalid file or directory."
 # define SYNTAX_ERROR "syntax error near unexpected token"
 # define NOT_F "command not found"
 

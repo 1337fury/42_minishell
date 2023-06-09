@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:06:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/09 15:11:11 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/09 15:31:51 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	_echo(t_general *g_master, char **arg)
 	t_env	*home;
 
 	home = get_env("HOME", g_master->ev);
-	if (!arg)
+	if (!arg || !arg[1])
 	{
 		ft_putchar_fd('\n', 1);
 		builtins_exit(g_master, 0);

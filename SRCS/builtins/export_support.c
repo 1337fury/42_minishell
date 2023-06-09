@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_support.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:15:32 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/06 10:10:41 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:12:31 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	insert_to_export(t_env *exp, char **var, char *arg)
 		tmp->next->value = ft_strdup("");
 	else
 		tmp->next->value = ft_strdup(var[1]);
+	tmp->next->prev = tmp;
 	tmp->next->next = NULL;
 	return (0);
 }
@@ -102,6 +103,7 @@ int	insert_to_env(t_env *en, char **var, char *arg)
 		tmp->next->value = ft_strdup("");
 	else
 		tmp->next->value = ft_strdup(var[1]);
+	tmp->next->prev = tmp;
 	tmp->next->next = NULL;
 	return (0);
 }
