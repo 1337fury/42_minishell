@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:08:18 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/01 16:25:27 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:51:25 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	_export(t_general *g_master, char **arg)
 			ft_putstr_fd(arg[i], 2);
 			ft_putstr_fd(": is not a valid identifier\n", 2);
 			builtins_exit(g_master, 1);
-			return (1);
+			continue ;
 		}
 		export_ex2(g_master, parse, arg[i]);
 	}

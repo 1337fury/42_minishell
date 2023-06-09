@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/09 15:20:24 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/09 16:46:00 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ void	restore_fd(int *fd, t_command *cmd)
 		dup2(fd[1], STDOUT_FILENO);
 }
 
+void	exec_builtins_f(t_command *cmd)
+{
+	if (!ft_strncmp(cmd->data[0], "echo", ft_strlen(cmd->data[0])))
+		_echo(&g_gen, cmd->data);
+	else if (!ft_strncmp(cmd->data[0], "cd", ft_strlen(cmd->data[0])))
+		_change_dir(&g_gen, cmd->data[1]);
+	else if (!ft_strncmp(cmd->data[0], "export", ft_strlen(cmd->data[0])))
+		_export(&g_gen, cmd->data + 1);
+	else if (!ft_strncmp(cmd->data[0], "env", ft_strlen(cmd->data[0])))
+		_env(&g_gen);
+	else if (!ft_strncmp(cmd->data[0], "unset", ft_strlen(cmd->data[0])))
+		_unset(&g_gen, cmd->data + 1);
+	else if (!ft_strncmp(cmd->data[0], "pwd", ft_strlen(cmd->data[0])))
+		_pwd(&g_gen);
+	else if (!ft_strncmp(cmd->data[0], "exit", ft_strlen(cmd->data[0])))
+		_exit_shell(&g_gen, cmd->data);
+	else if (!ft_strncmp(cmd->data[0], "echo", ft_strlen(cmd->data[0])))
+		_echo(&g_gen, cmd->data + 1);
+}
+
 void	exec_builtins(t_command *cmd, bool pipe)
 {
 	int	fd[2];
@@ -44,23 +64,14 @@ void	exec_builtins(t_command *cmd, bool pipe)
 	if (cmd->data)
 	{
 		if (!pipe)
-			_redirector_builtins(cmd, fd);
-		if (!ft_strncmp(cmd->data[0], "echo", ft_strlen(cmd->data[0])))
-			_echo(&g_gen, cmd->data);
-		else if (!ft_strncmp(cmd->data[0], "cd", ft_strlen(cmd->data[0])))
-			_change_dir(&g_gen, cmd->data[1]);
-		else if (!ft_strncmp(cmd->data[0], "export", ft_strlen(cmd->data[0])))
-			_export(&g_gen, cmd->data + 1);
-		else if (!ft_strncmp(cmd->data[0], "env", ft_strlen(cmd->data[0])))
-			_env(&g_gen);
-		else if (!ft_strncmp(cmd->data[0], "unset", ft_strlen(cmd->data[0])))
-			_unset(&g_gen, cmd->data + 1);
-		else if (!ft_strncmp(cmd->data[0], "pwd", ft_strlen(cmd->data[0])))
-			_pwd(&g_gen);
-		else if (!ft_strncmp(cmd->data[0], "exit", ft_strlen(cmd->data[0])))
-			_exit_shell(&g_gen, cmd->data);
-		else if (!ft_strncmp(cmd->data[0], "echo", ft_strlen(cmd->data[0])))
-			_echo(&g_gen, cmd->data + 1);
+		{
+			if (_redirector_builtins(cmd, fd))
+			{
+				restore_fd(fd, cmd);
+				return ;
+			}
+		}
+		exec_builtins_f(cmd);
 		if (!pipe)
 			restore_fd(fd, cmd);
 	}

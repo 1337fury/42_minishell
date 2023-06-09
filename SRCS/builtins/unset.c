@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 13:45:05 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/01 16:25:39 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:24:52 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ static void	delete_variable(t_env **env, char *var)
 	t_env	*found;
 
 	found = get_env(var, *env);
+	if (!found)
+		return ;
 	if (found)
 	{
 		if (found->prev)
+		{
 			found->prev->next = found->next;
+			if (found->next)
+				found->next->prev = found->prev;
+		}
 		else
 		{
 			*env = found->next;
