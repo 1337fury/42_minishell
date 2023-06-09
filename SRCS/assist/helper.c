@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:11:01 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/08 12:30:40 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:17:17 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,3 @@ char	*get_env_value(char *name, t_env *env, int herdoc)
 		return (NULL);
 	return (NULL);
 }
-
-//export A="*a"
-//echo $A

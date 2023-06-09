@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 22:18:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 18:22:58 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:17:04 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	fry_init_all(char **env, t_list **lexer, t_table **expander)
 	g_gen.ev = create_env(env);
 	g_gen.exp = create_env(env);
 	g_gen.e_status = 0;
+	g_gen.f_open = 0;
 	g_gen.c_procs = NULL;
 	g_gen.line = NULL;
 	g_gen.u_exec = false;

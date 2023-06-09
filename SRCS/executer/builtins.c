@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/02 17:36:02 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/09 15:20:24 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	_redirector_builtins(t_command *cmd, int *fd)
 	if (cmd->in == -1 || cmd->out == -1)
 	{
 		builtins_exit(&g_gen, 1);
+		g_gen.f_open = true;
 		return (ms_errors("open", "no such file or directory !"), 1);
 	}
 	if (cmd->out != 1)

@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   helper1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:30:30 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/08 12:30:52 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:19:37 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_general	g_gen;
+
 int	builtins_exit(t_general *g_master, int status)
 {
-	g_master->e_status = status;
+	if (!g_gen.f_open)
+		g_master->e_status = status;
+	g_gen.f_open = false;
 	return (status);
 }
 
