@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:11:01 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/08 12:30:40 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:13:41 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*expand_wild(char *v)
 	exp = "";
 	while (*v)
 	{
-		if (*v == '*' && *(v - 1) == ' ')
+		if (*v == '*' && (*(v - 1) == ' ' || !*(v - 1)))
 		{
 			_retrieve(&exp, v);
 			v += _strlen(v, ' ') - 1;
@@ -69,6 +69,3 @@ char	*get_env_value(char *name, t_env *env, int herdoc)
 		return (NULL);
 	return (NULL);
 }
-
-//export A="*a"
-//echo $A
