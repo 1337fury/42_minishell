@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/09 16:46:00 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 20:15:09 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	_redirector_builtins(t_command *cmd, int *fd)
 		dup2(cmd->out, STDOUT_FILENO);
 		close(cmd->out);
 	}
+	if (cmd->in != 0)
+		close(cmd->in);
 	return (EXIT_SUCCESS);
 }
 
