@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/09 16:46:00 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 17:53:02 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int	_redirector_builtins(t_command *cmd, int *fd)
 void	restore_fd(int *fd, t_command *cmd)
 {
 	if (cmd->out != 1)
+	{
 		dup2(fd[1], STDOUT_FILENO);
+		close(cmd->out);
+	}
 }
 
 void	exec_builtins_f(t_command *cmd)
