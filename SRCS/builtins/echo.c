@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:06:23 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/09 15:31:51 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 11:59:19 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	print_with_newline(t_env *home, char **arg)
 	int	i;
 
 	i = 1;
-	(void)home;
 	while (arg[i])
 	{
+		reset(arg[i]);
 		if (!ft_strcmp("~/", arg[i]) || !ft_strcmp("~", arg[i]))
 		{
 			ft_putstr_fd(home->value, 1);
@@ -54,6 +54,7 @@ static void	print_without_newline(t_env *home, char **arg)
 	i = 1;
 	while (arg[++i])
 	{
+		reset(arg[i]);
 		if ((arg[i][0] == '-' && arg[i][1] == 'n' && arg[i][2] == '\0')
 			|| dumb_string(arg[i]))
 			continue ;

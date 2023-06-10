@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/10 16:27:21 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:37:07 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	single_outin(t_command *cmd)
 	int	write;
 
 	if (cmd->in == -1 || cmd->out == -1)
-		return (ms_errors("open", "No such file or directory !"), 1);
+		return (ms_errors("open", "No such file or directory"), 1);
 	read = STDIN_FILENO;
 	write = STDOUT_FILENO;
 	if (cmd->in != 0)
