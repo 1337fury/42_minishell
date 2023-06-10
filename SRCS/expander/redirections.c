@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:09:10 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/07 07:43:59 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:32:24 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	redirect_handler(t_node **curr, t_command *cmd)
 {
 	char	*file_name;
 
-	file_name = (*curr)->next->value;
+	file_name = reset((*curr)->next->value);
 	if ((*curr)->type == LESS)
 		cmd->in = open(file_name, O_RDONLY, 0644);
 	else if ((*curr)->type == GREAT)
