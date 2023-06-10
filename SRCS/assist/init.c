@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:47:43 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/10 16:51:21 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:53:03 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,6 @@ int	print_env(t_env *export)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-void	imprint_env_data(char **envp, t_env *head)
-{
-	t_env	*temp;
-	char	**hold;
-	int		i;
-
-	temp = head;
-	i = 0;
-	while (envp[i])
-	{
-		hold = ft_split(envp[i], '=');
-		temp->name = ft_strdup(hold[0]);
-		temp->value = ft_strdup(hold[1]);
-		temp = temp->next;
-		i++;
-	}
 }
 
 t_env	*create_env(char **envp)

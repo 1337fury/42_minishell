@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/10 17:03:26 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:42:17 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ void	single_command(t_command *cmd, int *c_p)
 void	exec_family(t_family *family)
 {
 	t_command	*curr_cmd;
-	int			*child_pid;
-	int			sh_wait;
+	int			*c_p;
+	int			s_w;
 
 	if (!family || !family->head || family->already_seen)
 		return ;
@@ -146,6 +146,6 @@ void	exec_family(t_family *family)
 		s_w = false;
 	}
 	else
-		single_command(curr_cmd, child_pid);
-	wait_for_children(sh_wait, family, child_pid);
+		single_command(curr_cmd, c_p);
+	wait_for_children(s_w, family, c_p);
 }

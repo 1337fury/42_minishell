@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/10 17:02:43 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:43:00 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	wait_for_children(bool s_w, t_family *f, int *c_p)
 	g_gen.u_exec = true;
 	if (s_w)
 	{
-	    while (++i < f->size)
-			waitpid(c_p[0], &s, 0);
+		while (++i < f->size)
+			waitpid(c_p[i], &s, 0);
 		if (WIFEXITED(s))
 			g_gen.e_status = WEXITSTATUS(s);
 		else if (WIFSIGNALED(s) && WTERMSIG(s) == SIGINT)
 			g_gen.e_status = WTERMSIG(s) + 128;
-	    g_gen.u_exec = false;
+		g_gen.u_exec = false;
 	}
 }
