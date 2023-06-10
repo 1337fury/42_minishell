@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 19:39:56 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/31 18:10:47 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:03:37 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int		dup_close(int oldf, int newf, bool is_last);
 void	_execve(t_command *cmd);
 void	exec_builtins(t_command *cmd, bool pipe);
 bool	check_builtin(char *data);
-void	wait_for_children(bool s_w, int *i_e, t_family *f, int *c_p);
-
+void	wait_for_children(t_family *f, int *c_p, int *s_w);
 #endif

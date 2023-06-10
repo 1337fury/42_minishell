@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/05/30 19:42:46 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:03:09 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,25 @@ int	executer(t_table *table)
 	return (EXIT_SUCCESS);
 }
 
-void	wait_for_children(bool s_w, int *i_e, t_family *f, int *c_p)
+void	wait_for_children(t_family *f, int *c_p, int *s_w)
 {
-	if (s_w)
+	int	i;
+	int	status;
+
+	if (*s_w)
 	{
 		g_gen.u_exec = true;
-		i_e[0] = -1;
-		while (++i_e[0] < f->size)
-			waitpid(c_p[i_e[0]], &i_e[1], 0);
-		g_gen.e_status = WEXITSTATUS(i_e[1]);
+		i = 0;
+		while (i < f->size)
+		{
+			if (waitpid(c_p[i], &status, 0) == -1)
+				perror(strerror(errno));
+			if (WIFSIGNALED(status))
+				g_gen.e_status = 128 + WTERMSIG(status);
+			else if (WIFEXITED(status))
+				g_gen.e_status = WEXITSTATUS(status);
+			i++;
+		}
 		g_gen.u_exec = false;
 	}
 }

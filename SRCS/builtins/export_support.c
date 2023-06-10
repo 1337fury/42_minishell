@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:15:32 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/09 16:12:31 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:30:55 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,54 +56,26 @@ int	check_variable_validity(char *arg)
 	return (1);
 }
 
-int	insert_to_export(t_env *exp, char **var, char *arg)
+int	insert_to_export(t_env **exp, char **var, char *arg)
 {
-	t_env	*env;
-	t_env	*tmp;
+	t_env	*node;
 
-	tmp = exp;
-	while (tmp)
-	{
-		env = tmp;
-		tmp = tmp->next;
-	}
-	tmp = env;
-	tmp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
-	tmp->next->name = ft_strdup(var[0]);
-	tmp->next->single = true;
+	node = create_var(var[0], var[1]);
+	node->single = true;
 	if (ft_strchr(arg, '='))
-		tmp->next->single = false;
-	if (!var[1])
-		tmp->next->value = ft_strdup("");
-	else
-		tmp->next->value = ft_strdup(var[1]);
-	tmp->next->prev = tmp;
-	tmp->next->next = NULL;
+		node->single = false;
+	add_back(exp, node);
 	return (0);
 }
 
-int	insert_to_env(t_env *en, char **var, char *arg)
+int	insert_to_env(t_env **en, char **var, char *arg)
 {
-	t_env	*env;
-	t_env	*tmp;
+	t_env	*node;
 
-	tmp = en;
-	while (tmp)
-	{
-		env = tmp;
-		tmp = tmp->next;
-	}
-	tmp = env;
-	tmp->next = (t_env *)ft_malloc(sizeof(t_env), NULL, ALLOC, NULL);
-	tmp->next->name = ft_strdup(var[0]);
-	tmp->next->single = true;
+	node = create_var(var[0], var[1]);
+	node->single = true;
 	if (ft_strchr(arg, '='))
-		tmp->next->single = false;
-	if (!var[1])
-		tmp->next->value = ft_strdup("");
-	else
-		tmp->next->value = ft_strdup(var[1]);
-	tmp->next->prev = tmp;
-	tmp->next->next = NULL;
+		node->single = false;
+	add_back(en, node);
 	return (0);
 }

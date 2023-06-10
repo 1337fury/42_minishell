@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:08:18 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/09 15:51:25 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:31:28 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	export_ex(t_general *g_master, char **parse, char *arg)
 	if (get_env(parse[0], g_master->exp))
 		change_value(g_master->exp, parse);
 	else
-		insert_to_export(g_master->exp, parse, arg);
+		insert_to_export(&g_master->exp, parse, arg);
 	if (get_env(parse[0], g_master->ev))
 		change_value(g_master->ev, parse);
 	else
-		insert_to_env(g_master->ev, parse, arg);
+		insert_to_env(&g_master->ev, parse, arg);
 }
 
 void	export_ex2(t_general *g_master, char **parse, char *arg)
@@ -43,7 +43,7 @@ void	export_ex2(t_general *g_master, char **parse, char *arg)
 	if (!check_variable_validity(arg))
 	{
 		if (!get_env(parse[0], g_master->exp))
-			insert_to_export(g_master->exp, parse, arg);
+			insert_to_export(&g_master->exp, parse, arg);
 	}
 	else if (check_variable_validity(arg))
 		export_ex(g_master, parse, arg);

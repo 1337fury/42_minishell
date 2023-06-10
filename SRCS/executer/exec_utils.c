@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/04 18:23:33 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:27:21 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ int	single_outin(t_command *cmd)
  * Invokes the _execve() function to execute the command.
  * Handles specific error conditions and exits the child process accordingly.
  */
-void	single_command(t_command *cmd, int *pids)
+void	single_command(t_command *cmd, int *c_p)
 {
-	pids[0] = fork();
-	if (!pids[0])
+	c_p[0] = fork();
+	if (!c_p[0])
 	{
 		if (single_outin(cmd))
 			exit(1);
@@ -130,23 +130,22 @@ void	single_command(t_command *cmd, int *pids)
 void	exec_family(t_family *family)
 {
 	t_command	*curr_cmd;
-	int			inx_exit[2];
-	int			*child_pid;
-	int			sh_wait;
+	pid_t		*c_p;
+	int			s_w;
 
 	if (!family || !family->head || family->already_seen)
 		return ;
-	child_pid = ft_calloc(family->size, sizeof(int));
+	c_p = ft_calloc(family->size, sizeof(int));
 	curr_cmd = family->head;
-	sh_wait = true;
+	s_w = true;
 	if (check_pipe(curr_cmd))
-		exec_pipes_cmds(family, child_pid);
+		exec_pipes_cmds(family, c_p);
 	else if (check_builtin(*curr_cmd->data))
 	{
 		exec_builtins(curr_cmd, false);
-		sh_wait = false;
+		s_w = false;
 	}
 	else
-		single_command(curr_cmd, child_pid);
-	wait_for_children(sh_wait, inx_exit, family, child_pid);
+		single_command(curr_cmd, c_p);
+	wait_for_children(family, c_p, &s_w);
 }
