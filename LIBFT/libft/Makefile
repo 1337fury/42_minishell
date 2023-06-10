@@ -54,7 +54,8 @@ SRC =  \
  ./ft_lstclear.c \
  ./s_strjoin.c \
  ./ft_strcmp.c \
- ./_strlen.c
+ ./_strlen.c \
+ ./ms_reset.c
 
  SRC_MALLOC_OBJ = $(addprefix ../ft_malloc/, ft_malloc.o misc_functions.o misc_functions2.o)
 
