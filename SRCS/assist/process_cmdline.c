@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:31:31 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/04 18:13:38 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:59:36 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	ctrl_handler(int sigint)
 void	init_signal_handler(void)
 {
 	g_gen.sa.sa_flags = 0;
-	g_gen.sa.sa_handler = ctrl_handler;
-	sigaction(SIGINT, &g_gen.sa, NULL);
+	signal(SIGINT, ctrl_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
 

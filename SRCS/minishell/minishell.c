@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 22:18:33 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/09 15:17:04 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 13:47:30 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 extern t_general	g_gen;
 
 /*
-MODIFIED !!!! RETURN VALUE SERVES NO PURPOSE
 Initializes an environment and copy env to en->env_vars variable
 Also sets the lexer and expander pointers to NULL.
 @param en The environment struct to initialize.

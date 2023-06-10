@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/10 11:30:29 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:32:38 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ void	single_command(t_command *cmd, int *pids)
 void	exec_family(t_family *family)
 {
 	t_command	*curr_cmd;
-	int			inx_exit[2];
 	int			*child_pid;
 	int			sh_wait;
 
@@ -148,5 +147,5 @@ void	exec_family(t_family *family)
 	}
 	else
 		single_command(curr_cmd, child_pid);
-	wait_for_children(sh_wait, inx_exit, family, child_pid);
+	wait_for_children(sh_wait, family, child_pid);
 }
