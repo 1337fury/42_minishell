@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 13:45:05 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/09 16:24:52 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 11:16:45 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static void	delete_variable(t_env **env, char *var)
 		return ;
 	if (found)
 	{
-		if (found->prev)
+		if (!found->prev && !found->next)
+			*env = NULL;
+		else if (found->prev)
 		{
 			found->prev->next = found->next;
 			if (found->next)

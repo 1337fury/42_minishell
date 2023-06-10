@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 20:31:47 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/09 16:33:11 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:30:42 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdlib.h>
@@ -87,12 +89,14 @@ int		_unset(t_general *g_master, char **var);
 t_env	*get_env(const char *name, t_env *env);
 char	**parse_variable(char *arg);
 int		check_variable_validity(char *arg);
-int		insert_to_export(t_env *exp, char **var, char *arg);
-int		insert_to_env(t_env *en, char **var, char *arg);
+int		insert_to_export(t_env **exp, char **var, char *arg);
+int		insert_to_env(t_env **en, char **var, char *arg);
 char	**export_split(char *arg);
 void	export_ex2(t_general *g_master, char **parse, char *arg);
 void	export_ex(t_general *g_master, char **parse, char *arg);
 int		change_value(t_env *envir, char **var);
+t_env	*create_var(char *name, char *value);
+void	add_back(t_env **env, t_env *node);
 
 bool	process_cmdline(void);
 void	init_signal_handler(void);

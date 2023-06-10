@@ -6,7 +6,7 @@
 /*   By: hmeftah <hmeftah@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:47:43 by hmeftah           #+#    #+#             */
-/*   Updated: 2023/06/09 15:57:40 by hmeftah          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:51:21 by hmeftah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**convert_env(t_general *g_gen)
 
 	i = 0;
 	env = g_gen->ev;
-	result = ft_calloc((calc_len(env) + 2), sizeof(char *));
+	result = ft_calloc((calc_len(env) + 1), sizeof(char *));
 	if (!result)
 		return (NULL);
 	while (env)
@@ -81,26 +81,24 @@ void	imprint_env_data(char **envp, t_env *head)
 
 t_env	*create_env(char **envp)
 {
-	t_env	*head;
-	t_env	*temp;
-	t_env	*prev;
 	int		i;
+	char	**var;
+	t_env	*head;
+	t_env	*node;
 
 	i = 0;
-	head = (t_env *)ft_calloc(sizeof(t_env), 1);
-	head->prev = NULL;
-	temp = head;
-	while (envp[i + 1])
+	head = NULL;
+	if (envp[0])
 	{
-		prev = temp;
-		temp->single = false;
-		temp->next = (t_env *)ft_calloc(sizeof(t_env), 1);
-		temp = temp->next;
-		temp->prev = prev;
-		i++;
+		var = ft_split(envp[0], '=');
+		head = create_var(var[0], var[1]);
+		while (envp[++i])
+		{
+			var = ft_split(envp[i], '=');
+			node = create_var(var[0], var[1]);
+			add_back(&head, node);
+		}
 	}
-	temp->next = NULL;
-	imprint_env_data(envp, head);
 	return (head);
 }
 
@@ -111,7 +109,7 @@ int	calc_len(t_env *env)
 
 	en = env;
 	len = 0;
-	while (en->next)
+	while (en)
 	{
 		len++;
 		en = en->next;
