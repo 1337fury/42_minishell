@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/10 17:53:02 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/11 11:40:02 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	_redirector_builtins(t_command *cmd, int *fd)
 		dup2(cmd->out, STDOUT_FILENO);
 		close(cmd->out);
 	}
+	if (cmd->in != 0)
+		close(cmd->in);
 	return (EXIT_SUCCESS);
 }
 

@@ -1,6 +1,6 @@
 NAME                = minishell
 CC                  = cc
-FLAGS               = -Wall -Wextra -Werror -fsanitize=address
+FLAGS               = -Wall -Wextra -Werror
 READ                = -lreadline -L ~/.brew/opt/readline/lib
 
 INC                 = -I INCLUDES -Ilibft/includes -Ilibft/libft -Ilibft/ft_malloc -I ~/.brew/opt/readline/include

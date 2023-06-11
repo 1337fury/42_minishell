@@ -6,7 +6,7 @@
 /*   By: abdeel-o < abdeel-o@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:54 by abdeel-o          #+#    #+#             */
-/*   Updated: 2023/06/10 17:34:37 by abdeel-o         ###   ########.fr       */
+/*   Updated: 2023/06/11 11:40:45 by abdeel-o         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,18 @@ int	executer(t_table *table)
 
 void	wait_for_children(bool s_w, t_family *f, int *c_p)
 {
-	unsigned char	*st;
 	int				s;
 	int				i; 
 
 	if (s_w)
 	{
 		i = -1;
-		g_gen.u_exec = true;
-	    while (++i < f->size) 
+		while (++i < f->size)
 			waitpid(c_p[i], &s, 0);
-		st = (unsigned char *)&s;
-		if (st[0])
-			g_gen.e_status = st[0] + 128;
-		else
-			g_gen.e_status = st[1];
-	    g_gen.u_exec = false;
+		if (WIFEXITED(s))
+			g_gen.e_status = WEXITSTATUS(s);
+		else if (WIFSIGNALED(s) && WTERMSIG(s) == SIGINT)
+			g_gen.e_status = WTERMSIG(s) + 128;
+		g_gen.u_exec = false;
 	}
 }
