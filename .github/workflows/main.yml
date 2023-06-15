@@ -1,0 +1,19 @@
+name: Repository Stats
+on:
+  workflow_dispatch:
+
+jobs:
+  gather-stats:
+    runs-on: macOs
+    steps:
+      - name: Get Code Size
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const response = await octokit.request('GET /repos/{owner}/{repo}', {
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            console.log(response.data.size);
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
